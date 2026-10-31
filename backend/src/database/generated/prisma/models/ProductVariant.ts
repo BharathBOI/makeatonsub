@@ -225,7 +225,6 @@ export type ProductVariantWhereInput = {
   extraPrice?: Prisma.DecimalFilter<"ProductVariant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  planProducts?: Prisma.PlanProductListRelationFilter
   quotationTemplateLines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptionLines?: Prisma.SubscriptionLineListRelationFilter
   invoiceLines?: Prisma.InvoiceLineListRelationFilter
@@ -239,7 +238,6 @@ export type ProductVariantOrderByWithRelationInput = {
   extraPrice?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   product?: Prisma.ProductOrderByWithRelationInput
-  planProducts?: Prisma.PlanProductOrderByRelationAggregateInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineOrderByRelationAggregateInput
   subscriptionLines?: Prisma.SubscriptionLineOrderByRelationAggregateInput
   invoiceLines?: Prisma.InvoiceLineOrderByRelationAggregateInput
@@ -257,7 +255,6 @@ export type ProductVariantWhereUniqueInput = Prisma.AtLeast<{
   extraPrice?: Prisma.DecimalFilter<"ProductVariant"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  planProducts?: Prisma.PlanProductListRelationFilter
   quotationTemplateLines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptionLines?: Prisma.SubscriptionLineListRelationFilter
   invoiceLines?: Prisma.InvoiceLineListRelationFilter
@@ -296,7 +293,6 @@ export type ProductVariantCreateInput = {
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutVariantInput
@@ -309,7 +305,6 @@ export type ProductVariantUncheckedCreateInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutVariantInput
@@ -322,7 +317,6 @@ export type ProductVariantUpdateInput = {
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutVariantNestedInput
@@ -335,7 +329,6 @@ export type ProductVariantUncheckedUpdateInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutVariantNestedInput
@@ -465,22 +458,6 @@ export type ProductVariantUncheckedUpdateManyWithoutProductNestedInput = {
   deleteMany?: Prisma.ProductVariantScalarWhereInput | Prisma.ProductVariantScalarWhereInput[]
 }
 
-export type ProductVariantCreateNestedOneWithoutPlanProductsInput = {
-  create?: Prisma.XOR<Prisma.ProductVariantCreateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.ProductVariantCreateOrConnectWithoutPlanProductsInput
-  connect?: Prisma.ProductVariantWhereUniqueInput
-}
-
-export type ProductVariantUpdateOneWithoutPlanProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductVariantCreateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.ProductVariantCreateOrConnectWithoutPlanProductsInput
-  upsert?: Prisma.ProductVariantUpsertWithoutPlanProductsInput
-  disconnect?: Prisma.ProductVariantWhereInput | boolean
-  delete?: Prisma.ProductVariantWhereInput | boolean
-  connect?: Prisma.ProductVariantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductVariantUpdateToOneWithWhereWithoutPlanProductsInput, Prisma.ProductVariantUpdateWithoutPlanProductsInput>, Prisma.ProductVariantUncheckedUpdateWithoutPlanProductsInput>
-}
-
 export type ProductVariantCreateNestedOneWithoutQuotationTemplateLinesInput = {
   create?: Prisma.XOR<Prisma.ProductVariantCreateWithoutQuotationTemplateLinesInput, Prisma.ProductVariantUncheckedCreateWithoutQuotationTemplateLinesInput>
   connectOrCreate?: Prisma.ProductVariantCreateOrConnectWithoutQuotationTemplateLinesInput
@@ -535,7 +512,6 @@ export type ProductVariantCreateWithoutProductInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutVariantInput
@@ -547,7 +523,6 @@ export type ProductVariantUncheckedCreateWithoutProductInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutVariantInput
@@ -591,70 +566,6 @@ export type ProductVariantScalarWhereInput = {
   isActive?: Prisma.BoolFilter<"ProductVariant"> | boolean
 }
 
-export type ProductVariantCreateWithoutPlanProductsInput = {
-  id?: string
-  attribute: string
-  value: string
-  extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  isActive?: boolean
-  product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutVariantInput
-  subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutVariantInput
-  invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutVariantInput
-}
-
-export type ProductVariantUncheckedCreateWithoutPlanProductsInput = {
-  id?: string
-  productId: string
-  attribute: string
-  value: string
-  extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  isActive?: boolean
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutVariantInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutVariantInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutVariantInput
-}
-
-export type ProductVariantCreateOrConnectWithoutPlanProductsInput = {
-  where: Prisma.ProductVariantWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductVariantCreateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedCreateWithoutPlanProductsInput>
-}
-
-export type ProductVariantUpsertWithoutPlanProductsInput = {
-  update: Prisma.XOR<Prisma.ProductVariantUpdateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedUpdateWithoutPlanProductsInput>
-  create: Prisma.XOR<Prisma.ProductVariantCreateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedCreateWithoutPlanProductsInput>
-  where?: Prisma.ProductVariantWhereInput
-}
-
-export type ProductVariantUpdateToOneWithWhereWithoutPlanProductsInput = {
-  where?: Prisma.ProductVariantWhereInput
-  data: Prisma.XOR<Prisma.ProductVariantUpdateWithoutPlanProductsInput, Prisma.ProductVariantUncheckedUpdateWithoutPlanProductsInput>
-}
-
-export type ProductVariantUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  attribute?: Prisma.StringFieldUpdateOperationsInput | string
-  value?: Prisma.StringFieldUpdateOperationsInput | string
-  extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutVariantNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutVariantNestedInput
-  invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutVariantNestedInput
-}
-
-export type ProductVariantUncheckedUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  productId?: Prisma.StringFieldUpdateOperationsInput | string
-  attribute?: Prisma.StringFieldUpdateOperationsInput | string
-  value?: Prisma.StringFieldUpdateOperationsInput | string
-  extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutVariantNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutVariantNestedInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutVariantNestedInput
-}
-
 export type ProductVariantCreateWithoutQuotationTemplateLinesInput = {
   id?: string
   attribute: string
@@ -662,7 +573,6 @@ export type ProductVariantCreateWithoutQuotationTemplateLinesInput = {
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutVariantInput
 }
@@ -674,7 +584,6 @@ export type ProductVariantUncheckedCreateWithoutQuotationTemplateLinesInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutVariantInput
 }
@@ -702,7 +611,6 @@ export type ProductVariantUpdateWithoutQuotationTemplateLinesInput = {
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutVariantNestedInput
 }
@@ -714,7 +622,6 @@ export type ProductVariantUncheckedUpdateWithoutQuotationTemplateLinesInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutVariantNestedInput
 }
@@ -726,7 +633,6 @@ export type ProductVariantCreateWithoutSubscriptionLinesInput = {
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutVariantInput
 }
@@ -738,7 +644,6 @@ export type ProductVariantUncheckedCreateWithoutSubscriptionLinesInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutVariantInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutVariantInput
 }
@@ -766,7 +671,6 @@ export type ProductVariantUpdateWithoutSubscriptionLinesInput = {
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutVariantNestedInput
 }
@@ -778,7 +682,6 @@ export type ProductVariantUncheckedUpdateWithoutSubscriptionLinesInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutVariantNestedInput
 }
@@ -790,7 +693,6 @@ export type ProductVariantCreateWithoutInvoiceLinesInput = {
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutVariantInput
 }
@@ -802,7 +704,6 @@ export type ProductVariantUncheckedCreateWithoutInvoiceLinesInput = {
   value: string
   extraPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutVariantInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutVariantInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutVariantInput
 }
@@ -830,7 +731,6 @@ export type ProductVariantUpdateWithoutInvoiceLinesInput = {
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutVariantNestedInput
 }
@@ -842,7 +742,6 @@ export type ProductVariantUncheckedUpdateWithoutInvoiceLinesInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutVariantNestedInput
 }
@@ -861,7 +760,6 @@ export type ProductVariantUpdateWithoutProductInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutVariantNestedInput
@@ -873,7 +771,6 @@ export type ProductVariantUncheckedUpdateWithoutProductInput = {
   value?: Prisma.StringFieldUpdateOperationsInput | string
   extraPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutVariantNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutVariantNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutVariantNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutVariantNestedInput
@@ -893,14 +790,12 @@ export type ProductVariantUncheckedUpdateManyWithoutProductInput = {
  */
 
 export type ProductVariantCountOutputType = {
-  planProducts: number
   quotationTemplateLines: number
   subscriptionLines: number
   invoiceLines: number
 }
 
 export type ProductVariantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planProducts?: boolean | ProductVariantCountOutputTypeCountPlanProductsArgs
   quotationTemplateLines?: boolean | ProductVariantCountOutputTypeCountQuotationTemplateLinesArgs
   subscriptionLines?: boolean | ProductVariantCountOutputTypeCountSubscriptionLinesArgs
   invoiceLines?: boolean | ProductVariantCountOutputTypeCountInvoiceLinesArgs
@@ -914,13 +809,6 @@ export type ProductVariantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
    * Select specific fields to fetch from the ProductVariantCountOutputType
    */
   select?: Prisma.ProductVariantCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * ProductVariantCountOutputType without action
- */
-export type ProductVariantCountOutputTypeCountPlanProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PlanProductWhereInput
 }
 
 /**
@@ -953,7 +841,6 @@ export type ProductVariantSelect<ExtArgs extends runtime.Types.Extensions.Intern
   extraPrice?: boolean
   isActive?: boolean
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  planProducts?: boolean | Prisma.ProductVariant$planProductsArgs<ExtArgs>
   quotationTemplateLines?: boolean | Prisma.ProductVariant$quotationTemplateLinesArgs<ExtArgs>
   subscriptionLines?: boolean | Prisma.ProductVariant$subscriptionLinesArgs<ExtArgs>
   invoiceLines?: boolean | Prisma.ProductVariant$invoiceLinesArgs<ExtArgs>
@@ -992,7 +879,6 @@ export type ProductVariantSelectScalar = {
 export type ProductVariantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productId" | "attribute" | "value" | "extraPrice" | "isActive", ExtArgs["result"]["productVariant"]>
 export type ProductVariantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  planProducts?: boolean | Prisma.ProductVariant$planProductsArgs<ExtArgs>
   quotationTemplateLines?: boolean | Prisma.ProductVariant$quotationTemplateLinesArgs<ExtArgs>
   subscriptionLines?: boolean | Prisma.ProductVariant$subscriptionLinesArgs<ExtArgs>
   invoiceLines?: boolean | Prisma.ProductVariant$invoiceLinesArgs<ExtArgs>
@@ -1009,7 +895,6 @@ export type $ProductVariantPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "ProductVariant"
   objects: {
     product: Prisma.$ProductPayload<ExtArgs>
-    planProducts: Prisma.$PlanProductPayload<ExtArgs>[]
     quotationTemplateLines: Prisma.$QuotationTemplateLinePayload<ExtArgs>[]
     subscriptionLines: Prisma.$SubscriptionLinePayload<ExtArgs>[]
     invoiceLines: Prisma.$InvoiceLinePayload<ExtArgs>[]
@@ -1416,7 +1301,6 @@ readonly fields: ProductVariantFieldRefs;
 export interface Prisma__ProductVariantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  planProducts<T extends Prisma.ProductVariant$planProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductVariant$planProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotationTemplateLines<T extends Prisma.ProductVariant$quotationTemplateLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductVariant$quotationTemplateLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationTemplateLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionLines<T extends Prisma.ProductVariant$subscriptionLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductVariant$subscriptionLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoiceLines<T extends Prisma.ProductVariant$invoiceLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductVariant$invoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1853,30 +1737,6 @@ export type ProductVariantDeleteManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many ProductVariants to delete.
    */
   limit?: number
-}
-
-/**
- * ProductVariant.planProducts
- */
-export type ProductVariant$planProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PlanProduct
-   */
-  select?: Prisma.PlanProductSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PlanProduct
-   */
-  omit?: Prisma.PlanProductOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlanProductInclude<ExtArgs> | null
-  where?: Prisma.PlanProductWhereInput
-  orderBy?: Prisma.PlanProductOrderByWithRelationInput | Prisma.PlanProductOrderByWithRelationInput[]
-  cursor?: Prisma.PlanProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PlanProductScalarFieldEnum | Prisma.PlanProductScalarFieldEnum[]
 }
 
 /**

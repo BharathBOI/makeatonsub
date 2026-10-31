@@ -260,7 +260,7 @@ export type TaxCreateInput = {
   name: string
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  products?: Prisma.ProductCreateNestedManyWithoutDefaultTaxInput
+  products?: Prisma.ProductCreateNestedManyWithoutTaxInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutTaxInput
 }
 
@@ -269,7 +269,7 @@ export type TaxUncheckedCreateInput = {
   name: string
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDefaultTaxInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTaxInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutTaxInput
 }
 
@@ -278,7 +278,7 @@ export type TaxUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.ProductUpdateManyWithoutDefaultTaxNestedInput
+  products?: Prisma.ProductUpdateManyWithoutTaxNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutTaxNestedInput
 }
 
@@ -287,7 +287,7 @@ export type TaxUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.ProductUncheckedUpdateManyWithoutDefaultTaxNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutTaxNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutTaxNestedInput
 }
 
@@ -439,7 +439,7 @@ export type TaxCreateWithoutSubscriptionLinesInput = {
   name: string
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  products?: Prisma.ProductCreateNestedManyWithoutDefaultTaxInput
+  products?: Prisma.ProductCreateNestedManyWithoutTaxInput
 }
 
 export type TaxUncheckedCreateWithoutSubscriptionLinesInput = {
@@ -447,7 +447,7 @@ export type TaxUncheckedCreateWithoutSubscriptionLinesInput = {
   name: string
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: boolean
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDefaultTaxInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTaxInput
 }
 
 export type TaxCreateOrConnectWithoutSubscriptionLinesInput = {
@@ -471,7 +471,7 @@ export type TaxUpdateWithoutSubscriptionLinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.ProductUpdateManyWithoutDefaultTaxNestedInput
+  products?: Prisma.ProductUpdateManyWithoutTaxNestedInput
 }
 
 export type TaxUncheckedUpdateWithoutSubscriptionLinesInput = {
@@ -479,7 +479,7 @@ export type TaxUncheckedUpdateWithoutSubscriptionLinesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.ProductUncheckedUpdateManyWithoutDefaultTaxNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutTaxNestedInput
 }
 
 

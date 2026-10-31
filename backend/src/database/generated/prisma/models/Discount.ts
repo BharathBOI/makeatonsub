@@ -45,9 +45,11 @@ export type DiscountSumAggregateOutputType = {
 export type DiscountMinAggregateOutputType = {
   id: string | null
   name: string | null
+  code: string | null
   type: $Enums.DiscountType | null
   value: runtime.Decimal | null
   scope: $Enums.DiscountScope | null
+  productId: string | null
   minPurchaseAmount: runtime.Decimal | null
   minQuantity: number | null
   startDate: Date | null
@@ -55,15 +57,18 @@ export type DiscountMinAggregateOutputType = {
   usageLimit: number | null
   usageCount: number | null
   isActive: boolean | null
-  createdBy: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type DiscountMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  code: string | null
   type: $Enums.DiscountType | null
   value: runtime.Decimal | null
   scope: $Enums.DiscountScope | null
+  productId: string | null
   minPurchaseAmount: runtime.Decimal | null
   minQuantity: number | null
   startDate: Date | null
@@ -71,15 +76,18 @@ export type DiscountMaxAggregateOutputType = {
   usageLimit: number | null
   usageCount: number | null
   isActive: boolean | null
-  createdBy: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type DiscountCountAggregateOutputType = {
   id: number
   name: number
+  code: number
   type: number
   value: number
   scope: number
+  productId: number
   minPurchaseAmount: number
   minQuantity: number
   startDate: number
@@ -87,7 +95,8 @@ export type DiscountCountAggregateOutputType = {
   usageLimit: number
   usageCount: number
   isActive: number
-  createdBy: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -111,9 +120,11 @@ export type DiscountSumAggregateInputType = {
 export type DiscountMinAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   type?: true
   value?: true
   scope?: true
+  productId?: true
   minPurchaseAmount?: true
   minQuantity?: true
   startDate?: true
@@ -121,15 +132,18 @@ export type DiscountMinAggregateInputType = {
   usageLimit?: true
   usageCount?: true
   isActive?: true
-  createdBy?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type DiscountMaxAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   type?: true
   value?: true
   scope?: true
+  productId?: true
   minPurchaseAmount?: true
   minQuantity?: true
   startDate?: true
@@ -137,15 +151,18 @@ export type DiscountMaxAggregateInputType = {
   usageLimit?: true
   usageCount?: true
   isActive?: true
-  createdBy?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type DiscountCountAggregateInputType = {
   id?: true
   name?: true
+  code?: true
   type?: true
   value?: true
   scope?: true
+  productId?: true
   minPurchaseAmount?: true
   minQuantity?: true
   startDate?: true
@@ -153,7 +170,8 @@ export type DiscountCountAggregateInputType = {
   usageLimit?: true
   usageCount?: true
   isActive?: true
-  createdBy?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -246,9 +264,11 @@ export type DiscountGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type DiscountGroupByOutputType = {
   id: string
   name: string
+  code: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal
   scope: $Enums.DiscountScope
+  productId: string | null
   minPurchaseAmount: runtime.Decimal | null
   minQuantity: number | null
   startDate: Date
@@ -256,7 +276,8 @@ export type DiscountGroupByOutputType = {
   usageLimit: number | null
   usageCount: number
   isActive: boolean
-  createdBy: string
+  createdAt: Date
+  updatedAt: Date
   _count: DiscountCountAggregateOutputType | null
   _avg: DiscountAvgAggregateOutputType | null
   _sum: DiscountSumAggregateOutputType | null
@@ -285,9 +306,11 @@ export type DiscountWhereInput = {
   NOT?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
   id?: Prisma.UuidFilter<"Discount"> | string
   name?: Prisma.StringFilter<"Discount"> | string
+  code?: Prisma.StringNullableFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFilter<"Discount"> | $Enums.DiscountScope
+  productId?: Prisma.UuidNullableFilter<"Discount"> | string | null
   minPurchaseAmount?: Prisma.DecimalNullableFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.IntNullableFilter<"Discount"> | number | null
   startDate?: Prisma.DateTimeFilter<"Discount"> | Date | string
@@ -295,19 +318,20 @@ export type DiscountWhereInput = {
   usageLimit?: Prisma.IntNullableFilter<"Discount"> | number | null
   usageCount?: Prisma.IntFilter<"Discount"> | number
   isActive?: Prisma.BoolFilter<"Discount"> | boolean
-  createdBy?: Prisma.UuidFilter<"Discount"> | string
-  creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  products?: Prisma.DiscountProductListRelationFilter
-  subscriptions?: Prisma.DiscountSubscriptionListRelationFilter
-  applications?: Prisma.DiscountApplicationListRelationFilter
+  createdAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
+  product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
+  subscriptions?: Prisma.SubscriptionListRelationFilter
 }
 
 export type DiscountOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   value?: Prisma.SortOrder
   scope?: Prisma.SortOrder
+  productId?: Prisma.SortOrderInput | Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   minQuantity?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrder
@@ -315,15 +339,15 @@ export type DiscountOrderByWithRelationInput = {
   usageLimit?: Prisma.SortOrderInput | Prisma.SortOrder
   usageCount?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  creator?: Prisma.UserOrderByWithRelationInput
-  products?: Prisma.DiscountProductOrderByRelationAggregateInput
-  subscriptions?: Prisma.DiscountSubscriptionOrderByRelationAggregateInput
-  applications?: Prisma.DiscountApplicationOrderByRelationAggregateInput
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  product?: Prisma.ProductOrderByWithRelationInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
 
 export type DiscountWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  code?: string
   AND?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
   OR?: Prisma.DiscountWhereInput[]
   NOT?: Prisma.DiscountWhereInput | Prisma.DiscountWhereInput[]
@@ -331,6 +355,7 @@ export type DiscountWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFilter<"Discount"> | $Enums.DiscountScope
+  productId?: Prisma.UuidNullableFilter<"Discount"> | string | null
   minPurchaseAmount?: Prisma.DecimalNullableFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.IntNullableFilter<"Discount"> | number | null
   startDate?: Prisma.DateTimeFilter<"Discount"> | Date | string
@@ -338,19 +363,20 @@ export type DiscountWhereUniqueInput = Prisma.AtLeast<{
   usageLimit?: Prisma.IntNullableFilter<"Discount"> | number | null
   usageCount?: Prisma.IntFilter<"Discount"> | number
   isActive?: Prisma.BoolFilter<"Discount"> | boolean
-  createdBy?: Prisma.UuidFilter<"Discount"> | string
-  creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  products?: Prisma.DiscountProductListRelationFilter
-  subscriptions?: Prisma.DiscountSubscriptionListRelationFilter
-  applications?: Prisma.DiscountApplicationListRelationFilter
-}, "id">
+  createdAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
+  product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+}, "id" | "code">
 
 export type DiscountOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   value?: Prisma.SortOrder
   scope?: Prisma.SortOrder
+  productId?: Prisma.SortOrderInput | Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   minQuantity?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrder
@@ -358,7 +384,8 @@ export type DiscountOrderByWithAggregationInput = {
   usageLimit?: Prisma.SortOrderInput | Prisma.SortOrder
   usageCount?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.DiscountCountOrderByAggregateInput
   _avg?: Prisma.DiscountAvgOrderByAggregateInput
   _max?: Prisma.DiscountMaxOrderByAggregateInput
@@ -372,9 +399,11 @@ export type DiscountScalarWhereWithAggregatesInput = {
   NOT?: Prisma.DiscountScalarWhereWithAggregatesInput | Prisma.DiscountScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Discount"> | string
   name?: Prisma.StringWithAggregatesFilter<"Discount"> | string
+  code?: Prisma.StringNullableWithAggregatesFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeWithAggregatesFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalWithAggregatesFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeWithAggregatesFilter<"Discount"> | $Enums.DiscountScope
+  productId?: Prisma.UuidNullableWithAggregatesFilter<"Discount"> | string | null
   minPurchaseAmount?: Prisma.DecimalNullableWithAggregatesFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.IntNullableWithAggregatesFilter<"Discount"> | number | null
   startDate?: Prisma.DateTimeWithAggregatesFilter<"Discount"> | Date | string
@@ -382,15 +411,17 @@ export type DiscountScalarWhereWithAggregatesInput = {
   usageLimit?: Prisma.IntNullableWithAggregatesFilter<"Discount"> | number | null
   usageCount?: Prisma.IntWithAggregatesFilter<"Discount"> | number
   isActive?: Prisma.BoolWithAggregatesFilter<"Discount"> | boolean
-  createdBy?: Prisma.UuidWithAggregatesFilter<"Discount"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Discount"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Discount"> | Date | string
 }
 
 export type DiscountCreateInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -398,18 +429,20 @@ export type DiscountCreateInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  creator: Prisma.UserCreateNestedOneWithoutDiscountsInput
-  products?: Prisma.DiscountProductCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  product?: Prisma.ProductCreateNestedOneWithoutDiscountsInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutDiscountInput
 }
 
 export type DiscountUncheckedCreateInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
+  productId?: string | null
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -417,15 +450,15 @@ export type DiscountUncheckedCreateInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  createdBy: string
-  products?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationUncheckedCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutDiscountInput
 }
 
 export type DiscountUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -436,18 +469,20 @@ export type DiscountUpdateInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  creator?: Prisma.UserUpdateOneRequiredWithoutDiscountsNestedInput
-  products?: Prisma.DiscountProductUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUpdateOneWithoutDiscountsNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutDiscountNestedInput
 }
 
 export type DiscountUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -455,18 +490,19 @@ export type DiscountUncheckedUpdateInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  products?: Prisma.DiscountProductUncheckedUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUncheckedUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
 }
 
 export type DiscountCreateManyInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
+  productId?: string | null
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -474,12 +510,14 @@ export type DiscountCreateManyInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  createdBy: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type DiscountUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -490,14 +528,18 @@ export type DiscountUpdateManyMutationInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DiscountUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -505,7 +547,8 @@ export type DiscountUncheckedUpdateManyInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DiscountListRelationFilter = {
@@ -521,9 +564,11 @@ export type DiscountOrderByRelationAggregateInput = {
 export type DiscountCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   type?: Prisma.SortOrder
   value?: Prisma.SortOrder
   scope?: Prisma.SortOrder
+  productId?: Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrder
   minQuantity?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
@@ -531,7 +576,8 @@ export type DiscountCountOrderByAggregateInput = {
   usageLimit?: Prisma.SortOrder
   usageCount?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type DiscountAvgOrderByAggregateInput = {
@@ -545,9 +591,11 @@ export type DiscountAvgOrderByAggregateInput = {
 export type DiscountMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   type?: Prisma.SortOrder
   value?: Prisma.SortOrder
   scope?: Prisma.SortOrder
+  productId?: Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrder
   minQuantity?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
@@ -555,15 +603,18 @@ export type DiscountMaxOrderByAggregateInput = {
   usageLimit?: Prisma.SortOrder
   usageCount?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type DiscountMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   type?: Prisma.SortOrder
   value?: Prisma.SortOrder
   scope?: Prisma.SortOrder
+  productId?: Prisma.SortOrder
   minPurchaseAmount?: Prisma.SortOrder
   minQuantity?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
@@ -571,7 +622,8 @@ export type DiscountMinOrderByAggregateInput = {
   usageLimit?: Prisma.SortOrder
   usageCount?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type DiscountSumOrderByAggregateInput = {
@@ -582,50 +634,50 @@ export type DiscountSumOrderByAggregateInput = {
   usageCount?: Prisma.SortOrder
 }
 
-export type DiscountScalarRelationFilter = {
-  is?: Prisma.DiscountWhereInput
-  isNot?: Prisma.DiscountWhereInput
+export type DiscountNullableScalarRelationFilter = {
+  is?: Prisma.DiscountWhereInput | null
+  isNot?: Prisma.DiscountWhereInput | null
 }
 
-export type DiscountCreateNestedManyWithoutCreatorInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput> | Prisma.DiscountCreateWithoutCreatorInput[] | Prisma.DiscountUncheckedCreateWithoutCreatorInput[]
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutCreatorInput | Prisma.DiscountCreateOrConnectWithoutCreatorInput[]
-  createMany?: Prisma.DiscountCreateManyCreatorInputEnvelope
+export type DiscountCreateNestedManyWithoutProductInput = {
+  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput> | Prisma.DiscountCreateWithoutProductInput[] | Prisma.DiscountUncheckedCreateWithoutProductInput[]
+  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductInput | Prisma.DiscountCreateOrConnectWithoutProductInput[]
+  createMany?: Prisma.DiscountCreateManyProductInputEnvelope
   connect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
 }
 
-export type DiscountUncheckedCreateNestedManyWithoutCreatorInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput> | Prisma.DiscountCreateWithoutCreatorInput[] | Prisma.DiscountUncheckedCreateWithoutCreatorInput[]
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutCreatorInput | Prisma.DiscountCreateOrConnectWithoutCreatorInput[]
-  createMany?: Prisma.DiscountCreateManyCreatorInputEnvelope
+export type DiscountUncheckedCreateNestedManyWithoutProductInput = {
+  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput> | Prisma.DiscountCreateWithoutProductInput[] | Prisma.DiscountUncheckedCreateWithoutProductInput[]
+  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductInput | Prisma.DiscountCreateOrConnectWithoutProductInput[]
+  createMany?: Prisma.DiscountCreateManyProductInputEnvelope
   connect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
 }
 
-export type DiscountUpdateManyWithoutCreatorNestedInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput> | Prisma.DiscountCreateWithoutCreatorInput[] | Prisma.DiscountUncheckedCreateWithoutCreatorInput[]
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutCreatorInput | Prisma.DiscountCreateOrConnectWithoutCreatorInput[]
-  upsert?: Prisma.DiscountUpsertWithWhereUniqueWithoutCreatorInput | Prisma.DiscountUpsertWithWhereUniqueWithoutCreatorInput[]
-  createMany?: Prisma.DiscountCreateManyCreatorInputEnvelope
+export type DiscountUpdateManyWithoutProductNestedInput = {
+  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput> | Prisma.DiscountCreateWithoutProductInput[] | Prisma.DiscountUncheckedCreateWithoutProductInput[]
+  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductInput | Prisma.DiscountCreateOrConnectWithoutProductInput[]
+  upsert?: Prisma.DiscountUpsertWithWhereUniqueWithoutProductInput | Prisma.DiscountUpsertWithWhereUniqueWithoutProductInput[]
+  createMany?: Prisma.DiscountCreateManyProductInputEnvelope
   set?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   disconnect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   delete?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   connect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
-  update?: Prisma.DiscountUpdateWithWhereUniqueWithoutCreatorInput | Prisma.DiscountUpdateWithWhereUniqueWithoutCreatorInput[]
-  updateMany?: Prisma.DiscountUpdateManyWithWhereWithoutCreatorInput | Prisma.DiscountUpdateManyWithWhereWithoutCreatorInput[]
+  update?: Prisma.DiscountUpdateWithWhereUniqueWithoutProductInput | Prisma.DiscountUpdateWithWhereUniqueWithoutProductInput[]
+  updateMany?: Prisma.DiscountUpdateManyWithWhereWithoutProductInput | Prisma.DiscountUpdateManyWithWhereWithoutProductInput[]
   deleteMany?: Prisma.DiscountScalarWhereInput | Prisma.DiscountScalarWhereInput[]
 }
 
-export type DiscountUncheckedUpdateManyWithoutCreatorNestedInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput> | Prisma.DiscountCreateWithoutCreatorInput[] | Prisma.DiscountUncheckedCreateWithoutCreatorInput[]
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutCreatorInput | Prisma.DiscountCreateOrConnectWithoutCreatorInput[]
-  upsert?: Prisma.DiscountUpsertWithWhereUniqueWithoutCreatorInput | Prisma.DiscountUpsertWithWhereUniqueWithoutCreatorInput[]
-  createMany?: Prisma.DiscountCreateManyCreatorInputEnvelope
+export type DiscountUncheckedUpdateManyWithoutProductNestedInput = {
+  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput> | Prisma.DiscountCreateWithoutProductInput[] | Prisma.DiscountUncheckedCreateWithoutProductInput[]
+  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductInput | Prisma.DiscountCreateOrConnectWithoutProductInput[]
+  upsert?: Prisma.DiscountUpsertWithWhereUniqueWithoutProductInput | Prisma.DiscountUpsertWithWhereUniqueWithoutProductInput[]
+  createMany?: Prisma.DiscountCreateManyProductInputEnvelope
   set?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   disconnect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   delete?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
   connect?: Prisma.DiscountWhereUniqueInput | Prisma.DiscountWhereUniqueInput[]
-  update?: Prisma.DiscountUpdateWithWhereUniqueWithoutCreatorInput | Prisma.DiscountUpdateWithWhereUniqueWithoutCreatorInput[]
-  updateMany?: Prisma.DiscountUpdateManyWithWhereWithoutCreatorInput | Prisma.DiscountUpdateManyWithWhereWithoutCreatorInput[]
+  update?: Prisma.DiscountUpdateWithWhereUniqueWithoutProductInput | Prisma.DiscountUpdateWithWhereUniqueWithoutProductInput[]
+  updateMany?: Prisma.DiscountUpdateManyWithWhereWithoutProductInput | Prisma.DiscountUpdateManyWithWhereWithoutProductInput[]
   deleteMany?: Prisma.DiscountScalarWhereInput | Prisma.DiscountScalarWhereInput[]
 }
 
@@ -653,54 +705,29 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type DiscountCreateNestedOneWithoutProductsInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductsInput, Prisma.DiscountUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductsInput
-  connect?: Prisma.DiscountWhereUniqueInput
-}
-
-export type DiscountUpdateOneRequiredWithoutProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutProductsInput, Prisma.DiscountUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutProductsInput
-  upsert?: Prisma.DiscountUpsertWithoutProductsInput
-  connect?: Prisma.DiscountWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DiscountUpdateToOneWithWhereWithoutProductsInput, Prisma.DiscountUpdateWithoutProductsInput>, Prisma.DiscountUncheckedUpdateWithoutProductsInput>
-}
-
 export type DiscountCreateNestedOneWithoutSubscriptionsInput = {
   create?: Prisma.XOR<Prisma.DiscountCreateWithoutSubscriptionsInput, Prisma.DiscountUncheckedCreateWithoutSubscriptionsInput>
   connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutSubscriptionsInput
   connect?: Prisma.DiscountWhereUniqueInput
 }
 
-export type DiscountUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+export type DiscountUpdateOneWithoutSubscriptionsNestedInput = {
   create?: Prisma.XOR<Prisma.DiscountCreateWithoutSubscriptionsInput, Prisma.DiscountUncheckedCreateWithoutSubscriptionsInput>
   connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutSubscriptionsInput
   upsert?: Prisma.DiscountUpsertWithoutSubscriptionsInput
+  disconnect?: Prisma.DiscountWhereInput | boolean
+  delete?: Prisma.DiscountWhereInput | boolean
   connect?: Prisma.DiscountWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.DiscountUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.DiscountUpdateWithoutSubscriptionsInput>, Prisma.DiscountUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type DiscountCreateNestedOneWithoutApplicationsInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutApplicationsInput, Prisma.DiscountUncheckedCreateWithoutApplicationsInput>
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutApplicationsInput
-  connect?: Prisma.DiscountWhereUniqueInput
-}
-
-export type DiscountUpdateOneRequiredWithoutApplicationsNestedInput = {
-  create?: Prisma.XOR<Prisma.DiscountCreateWithoutApplicationsInput, Prisma.DiscountUncheckedCreateWithoutApplicationsInput>
-  connectOrCreate?: Prisma.DiscountCreateOrConnectWithoutApplicationsInput
-  upsert?: Prisma.DiscountUpsertWithoutApplicationsInput
-  connect?: Prisma.DiscountWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DiscountUpdateToOneWithWhereWithoutApplicationsInput, Prisma.DiscountUpdateWithoutApplicationsInput>, Prisma.DiscountUncheckedUpdateWithoutApplicationsInput>
-}
-
-export type DiscountCreateWithoutCreatorInput = {
+export type DiscountCreateWithoutProductInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -708,17 +735,18 @@ export type DiscountCreateWithoutCreatorInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  products?: Prisma.DiscountProductCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutDiscountInput
 }
 
-export type DiscountUncheckedCreateWithoutCreatorInput = {
+export type DiscountUncheckedCreateWithoutProductInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -726,35 +754,35 @@ export type DiscountUncheckedCreateWithoutCreatorInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  products?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationUncheckedCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutDiscountInput
 }
 
-export type DiscountCreateOrConnectWithoutCreatorInput = {
+export type DiscountCreateOrConnectWithoutProductInput = {
   where: Prisma.DiscountWhereUniqueInput
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput>
+  create: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput>
 }
 
-export type DiscountCreateManyCreatorInputEnvelope = {
-  data: Prisma.DiscountCreateManyCreatorInput | Prisma.DiscountCreateManyCreatorInput[]
+export type DiscountCreateManyProductInputEnvelope = {
+  data: Prisma.DiscountCreateManyProductInput | Prisma.DiscountCreateManyProductInput[]
   skipDuplicates?: boolean
 }
 
-export type DiscountUpsertWithWhereUniqueWithoutCreatorInput = {
+export type DiscountUpsertWithWhereUniqueWithoutProductInput = {
   where: Prisma.DiscountWhereUniqueInput
-  update: Prisma.XOR<Prisma.DiscountUpdateWithoutCreatorInput, Prisma.DiscountUncheckedUpdateWithoutCreatorInput>
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutCreatorInput, Prisma.DiscountUncheckedCreateWithoutCreatorInput>
+  update: Prisma.XOR<Prisma.DiscountUpdateWithoutProductInput, Prisma.DiscountUncheckedUpdateWithoutProductInput>
+  create: Prisma.XOR<Prisma.DiscountCreateWithoutProductInput, Prisma.DiscountUncheckedCreateWithoutProductInput>
 }
 
-export type DiscountUpdateWithWhereUniqueWithoutCreatorInput = {
+export type DiscountUpdateWithWhereUniqueWithoutProductInput = {
   where: Prisma.DiscountWhereUniqueInput
-  data: Prisma.XOR<Prisma.DiscountUpdateWithoutCreatorInput, Prisma.DiscountUncheckedUpdateWithoutCreatorInput>
+  data: Prisma.XOR<Prisma.DiscountUpdateWithoutProductInput, Prisma.DiscountUncheckedUpdateWithoutProductInput>
 }
 
-export type DiscountUpdateManyWithWhereWithoutCreatorInput = {
+export type DiscountUpdateManyWithWhereWithoutProductInput = {
   where: Prisma.DiscountScalarWhereInput
-  data: Prisma.XOR<Prisma.DiscountUpdateManyMutationInput, Prisma.DiscountUncheckedUpdateManyWithoutCreatorInput>
+  data: Prisma.XOR<Prisma.DiscountUpdateManyMutationInput, Prisma.DiscountUncheckedUpdateManyWithoutProductInput>
 }
 
 export type DiscountScalarWhereInput = {
@@ -763,9 +791,11 @@ export type DiscountScalarWhereInput = {
   NOT?: Prisma.DiscountScalarWhereInput | Prisma.DiscountScalarWhereInput[]
   id?: Prisma.UuidFilter<"Discount"> | string
   name?: Prisma.StringFilter<"Discount"> | string
+  code?: Prisma.StringNullableFilter<"Discount"> | string | null
   type?: Prisma.EnumDiscountTypeFilter<"Discount"> | $Enums.DiscountType
   value?: Prisma.DecimalFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFilter<"Discount"> | $Enums.DiscountScope
+  productId?: Prisma.UuidNullableFilter<"Discount"> | string | null
   minPurchaseAmount?: Prisma.DecimalNullableFilter<"Discount"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.IntNullableFilter<"Discount"> | number | null
   startDate?: Prisma.DateTimeFilter<"Discount"> | Date | string
@@ -773,103 +803,17 @@ export type DiscountScalarWhereInput = {
   usageLimit?: Prisma.IntNullableFilter<"Discount"> | number | null
   usageCount?: Prisma.IntFilter<"Discount"> | number
   isActive?: Prisma.BoolFilter<"Discount"> | boolean
-  createdBy?: Prisma.UuidFilter<"Discount"> | string
-}
-
-export type DiscountCreateWithoutProductsInput = {
-  id?: string
-  name: string
-  type: $Enums.DiscountType
-  value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
-  minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: number | null
-  startDate: Date | string
-  endDate?: Date | string | null
-  usageLimit?: number | null
-  usageCount?: number
-  isActive?: boolean
-  creator: Prisma.UserCreateNestedOneWithoutDiscountsInput
-  subscriptions?: Prisma.DiscountSubscriptionCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationCreateNestedManyWithoutDiscountInput
-}
-
-export type DiscountUncheckedCreateWithoutProductsInput = {
-  id?: string
-  name: string
-  type: $Enums.DiscountType
-  value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
-  minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: number | null
-  startDate: Date | string
-  endDate?: Date | string | null
-  usageLimit?: number | null
-  usageCount?: number
-  isActive?: boolean
-  createdBy: string
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationUncheckedCreateNestedManyWithoutDiscountInput
-}
-
-export type DiscountCreateOrConnectWithoutProductsInput = {
-  where: Prisma.DiscountWhereUniqueInput
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutProductsInput, Prisma.DiscountUncheckedCreateWithoutProductsInput>
-}
-
-export type DiscountUpsertWithoutProductsInput = {
-  update: Prisma.XOR<Prisma.DiscountUpdateWithoutProductsInput, Prisma.DiscountUncheckedUpdateWithoutProductsInput>
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutProductsInput, Prisma.DiscountUncheckedCreateWithoutProductsInput>
-  where?: Prisma.DiscountWhereInput
-}
-
-export type DiscountUpdateToOneWithWhereWithoutProductsInput = {
-  where?: Prisma.DiscountWhereInput
-  data: Prisma.XOR<Prisma.DiscountUpdateWithoutProductsInput, Prisma.DiscountUncheckedUpdateWithoutProductsInput>
-}
-
-export type DiscountUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
-  value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
-  minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usageCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  creator?: Prisma.UserUpdateOneRequiredWithoutDiscountsNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUpdateManyWithoutDiscountNestedInput
-}
-
-export type DiscountUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
-  value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
-  minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usageCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUncheckedUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Discount"> | Date | string
 }
 
 export type DiscountCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -877,17 +821,19 @@ export type DiscountCreateWithoutSubscriptionsInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  creator: Prisma.UserCreateNestedOneWithoutDiscountsInput
-  products?: Prisma.DiscountProductCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  product?: Prisma.ProductCreateNestedOneWithoutDiscountsInput
 }
 
 export type DiscountUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
+  productId?: string | null
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -895,9 +841,8 @@ export type DiscountUncheckedCreateWithoutSubscriptionsInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  createdBy: string
-  products?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutDiscountInput
-  applications?: Prisma.DiscountApplicationUncheckedCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type DiscountCreateOrConnectWithoutSubscriptionsInput = {
@@ -919,6 +864,7 @@ export type DiscountUpdateToOneWithWhereWithoutSubscriptionsInput = {
 export type DiscountUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -929,17 +875,19 @@ export type DiscountUpdateWithoutSubscriptionsInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  creator?: Prisma.UserUpdateOneRequiredWithoutDiscountsNestedInput
-  products?: Prisma.DiscountProductUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUpdateOneWithoutDiscountsNestedInput
 }
 
 export type DiscountUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
+  productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -947,17 +895,17 @@ export type DiscountUncheckedUpdateWithoutSubscriptionsInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  products?: Prisma.DiscountProductUncheckedUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUncheckedUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type DiscountCreateWithoutApplicationsInput = {
+export type DiscountCreateManyProductInput = {
   id?: string
   name: string
+  code?: string | null
   type: $Enums.DiscountType
   value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
+  scope?: $Enums.DiscountScope
   minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   minQuantity?: number | null
   startDate: Date | string
@@ -965,48 +913,14 @@ export type DiscountCreateWithoutApplicationsInput = {
   usageLimit?: number | null
   usageCount?: number
   isActive?: boolean
-  creator: Prisma.UserCreateNestedOneWithoutDiscountsInput
-  products?: Prisma.DiscountProductCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionCreateNestedManyWithoutDiscountInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
-export type DiscountUncheckedCreateWithoutApplicationsInput = {
-  id?: string
-  name: string
-  type: $Enums.DiscountType
-  value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
-  minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: number | null
-  startDate: Date | string
-  endDate?: Date | string | null
-  usageLimit?: number | null
-  usageCount?: number
-  isActive?: boolean
-  createdBy: string
-  products?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutDiscountInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedCreateNestedManyWithoutDiscountInput
-}
-
-export type DiscountCreateOrConnectWithoutApplicationsInput = {
-  where: Prisma.DiscountWhereUniqueInput
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutApplicationsInput, Prisma.DiscountUncheckedCreateWithoutApplicationsInput>
-}
-
-export type DiscountUpsertWithoutApplicationsInput = {
-  update: Prisma.XOR<Prisma.DiscountUpdateWithoutApplicationsInput, Prisma.DiscountUncheckedUpdateWithoutApplicationsInput>
-  create: Prisma.XOR<Prisma.DiscountCreateWithoutApplicationsInput, Prisma.DiscountUncheckedCreateWithoutApplicationsInput>
-  where?: Prisma.DiscountWhereInput
-}
-
-export type DiscountUpdateToOneWithWhereWithoutApplicationsInput = {
-  where?: Prisma.DiscountWhereInput
-  data: Prisma.XOR<Prisma.DiscountUpdateWithoutApplicationsInput, Prisma.DiscountUncheckedUpdateWithoutApplicationsInput>
-}
-
-export type DiscountUpdateWithoutApplicationsInput = {
+export type DiscountUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -1017,14 +931,15 @@ export type DiscountUpdateWithoutApplicationsInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  creator?: Prisma.UserUpdateOneRequiredWithoutDiscountsNestedInput
-  products?: Prisma.DiscountProductUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutDiscountNestedInput
 }
 
-export type DiscountUncheckedUpdateWithoutApplicationsInput = {
+export type DiscountUncheckedUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -1035,29 +950,15 @@ export type DiscountUncheckedUpdateWithoutApplicationsInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  products?: Prisma.DiscountProductUncheckedUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
 }
 
-export type DiscountCreateManyCreatorInput = {
-  id?: string
-  name: string
-  type: $Enums.DiscountType
-  value: runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope: $Enums.DiscountScope
-  minPurchaseAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: number | null
-  startDate: Date | string
-  endDate?: Date | string | null
-  usageLimit?: number | null
-  usageCount?: number
-  isActive?: boolean
-}
-
-export type DiscountUpdateWithoutCreatorInput = {
+export type DiscountUncheckedUpdateManyWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
   value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
@@ -1068,42 +969,8 @@ export type DiscountUpdateWithoutCreatorInput = {
   usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usageCount?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.DiscountProductUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUpdateManyWithoutDiscountNestedInput
-}
-
-export type DiscountUncheckedUpdateWithoutCreatorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
-  value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
-  minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usageCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  products?: Prisma.DiscountProductUncheckedUpdateManyWithoutDiscountNestedInput
-  subscriptions?: Prisma.DiscountSubscriptionUncheckedUpdateManyWithoutDiscountNestedInput
-  applications?: Prisma.DiscountApplicationUncheckedUpdateManyWithoutDiscountNestedInput
-}
-
-export type DiscountUncheckedUpdateManyWithoutCreatorInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumDiscountTypeFieldUpdateOperationsInput | $Enums.DiscountType
-  value?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  scope?: Prisma.EnumDiscountScopeFieldUpdateOperationsInput | $Enums.DiscountScope
-  minPurchaseAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  minQuantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  usageLimit?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  usageCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -1112,15 +979,11 @@ export type DiscountUncheckedUpdateManyWithoutCreatorInput = {
  */
 
 export type DiscountCountOutputType = {
-  products: number
   subscriptions: number
-  applications: number
 }
 
 export type DiscountCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  products?: boolean | DiscountCountOutputTypeCountProductsArgs
   subscriptions?: boolean | DiscountCountOutputTypeCountSubscriptionsArgs
-  applications?: boolean | DiscountCountOutputTypeCountApplicationsArgs
 }
 
 /**
@@ -1136,31 +999,19 @@ export type DiscountCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * DiscountCountOutputType without action
  */
-export type DiscountCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DiscountProductWhereInput
-}
-
-/**
- * DiscountCountOutputType without action
- */
 export type DiscountCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DiscountSubscriptionWhereInput
-}
-
-/**
- * DiscountCountOutputType without action
- */
-export type DiscountCountOutputTypeCountApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DiscountApplicationWhereInput
+  where?: Prisma.SubscriptionWhereInput
 }
 
 
 export type DiscountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   type?: boolean
   value?: boolean
   scope?: boolean
+  productId?: boolean
   minPurchaseAmount?: boolean
   minQuantity?: boolean
   startDate?: boolean
@@ -1168,20 +1019,21 @@ export type DiscountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   usageLimit?: boolean
   usageCount?: boolean
   isActive?: boolean
-  createdBy?: boolean
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  products?: boolean | Prisma.Discount$productsArgs<ExtArgs>
+  createdAt?: boolean
+  updatedAt?: boolean
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Discount$subscriptionsArgs<ExtArgs>
-  applications?: boolean | Prisma.Discount$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.DiscountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["discount"]>
 
 export type DiscountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   type?: boolean
   value?: boolean
   scope?: boolean
+  productId?: boolean
   minPurchaseAmount?: boolean
   minQuantity?: boolean
   startDate?: boolean
@@ -1189,16 +1041,19 @@ export type DiscountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   usageLimit?: boolean
   usageCount?: boolean
   isActive?: boolean
-  createdBy?: boolean
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  createdAt?: boolean
+  updatedAt?: boolean
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
 }, ExtArgs["result"]["discount"]>
 
 export type DiscountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  code?: boolean
   type?: boolean
   value?: boolean
   scope?: boolean
+  productId?: boolean
   minPurchaseAmount?: boolean
   minQuantity?: boolean
   startDate?: boolean
@@ -1206,16 +1061,19 @@ export type DiscountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   usageLimit?: boolean
   usageCount?: boolean
   isActive?: boolean
-  createdBy?: boolean
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  createdAt?: boolean
+  updatedAt?: boolean
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
 }, ExtArgs["result"]["discount"]>
 
 export type DiscountSelectScalar = {
   id?: boolean
   name?: boolean
+  code?: boolean
   type?: boolean
   value?: boolean
   scope?: boolean
+  productId?: boolean
   minPurchaseAmount?: boolean
   minQuantity?: boolean
   startDate?: boolean
@@ -1223,38 +1081,37 @@ export type DiscountSelectScalar = {
   usageLimit?: boolean
   usageCount?: boolean
   isActive?: boolean
-  createdBy?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type DiscountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "value" | "scope" | "minPurchaseAmount" | "minQuantity" | "startDate" | "endDate" | "usageLimit" | "usageCount" | "isActive" | "createdBy", ExtArgs["result"]["discount"]>
+export type DiscountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "type" | "value" | "scope" | "productId" | "minPurchaseAmount" | "minQuantity" | "startDate" | "endDate" | "usageLimit" | "usageCount" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["discount"]>
 export type DiscountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  products?: boolean | Prisma.Discount$productsArgs<ExtArgs>
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Discount$subscriptionsArgs<ExtArgs>
-  applications?: boolean | Prisma.Discount$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.DiscountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DiscountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
 }
 export type DiscountIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.Discount$productArgs<ExtArgs>
 }
 
 export type $DiscountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Discount"
   objects: {
-    creator: Prisma.$UserPayload<ExtArgs>
-    products: Prisma.$DiscountProductPayload<ExtArgs>[]
-    subscriptions: Prisma.$DiscountSubscriptionPayload<ExtArgs>[]
-    applications: Prisma.$DiscountApplicationPayload<ExtArgs>[]
+    product: Prisma.$ProductPayload<ExtArgs> | null
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    code: string | null
     type: $Enums.DiscountType
     value: runtime.Decimal
     scope: $Enums.DiscountScope
+    productId: string | null
     minPurchaseAmount: runtime.Decimal | null
     minQuantity: number | null
     startDate: Date
@@ -1262,7 +1119,8 @@ export type $DiscountPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     usageLimit: number | null
     usageCount: number
     isActive: boolean
-    createdBy: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["discount"]>
   composites: {}
 }
@@ -1657,10 +1515,8 @@ readonly fields: DiscountFieldRefs;
  */
 export interface Prisma__DiscountClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  creator<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  products<T extends Prisma.Discount$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Discount$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.Discount$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Discount$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  applications<T extends Prisma.Discount$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Discount$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  product<T extends Prisma.Discount$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Discount$productArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  subscriptions<T extends Prisma.Discount$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Discount$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1692,9 +1548,11 @@ export interface Prisma__DiscountClient<T, Null = never, ExtArgs extends runtime
 export interface DiscountFieldRefs {
   readonly id: Prisma.FieldRef<"Discount", 'String'>
   readonly name: Prisma.FieldRef<"Discount", 'String'>
+  readonly code: Prisma.FieldRef<"Discount", 'String'>
   readonly type: Prisma.FieldRef<"Discount", 'DiscountType'>
   readonly value: Prisma.FieldRef<"Discount", 'Decimal'>
   readonly scope: Prisma.FieldRef<"Discount", 'DiscountScope'>
+  readonly productId: Prisma.FieldRef<"Discount", 'String'>
   readonly minPurchaseAmount: Prisma.FieldRef<"Discount", 'Decimal'>
   readonly minQuantity: Prisma.FieldRef<"Discount", 'Int'>
   readonly startDate: Prisma.FieldRef<"Discount", 'DateTime'>
@@ -1702,7 +1560,8 @@ export interface DiscountFieldRefs {
   readonly usageLimit: Prisma.FieldRef<"Discount", 'Int'>
   readonly usageCount: Prisma.FieldRef<"Discount", 'Int'>
   readonly isActive: Prisma.FieldRef<"Discount", 'Boolean'>
-  readonly createdBy: Prisma.FieldRef<"Discount", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Discount", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Discount", 'DateTime'>
 }
     
 
@@ -2104,27 +1963,22 @@ export type DiscountDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Discount.products
+ * Discount.product
  */
-export type Discount$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Discount$productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DiscountProduct
+   * Select specific fields to fetch from the Product
    */
-  select?: Prisma.DiscountProductSelect<ExtArgs> | null
+  select?: Prisma.ProductSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DiscountProduct
+   * Omit specific fields from the Product
    */
-  omit?: Prisma.DiscountProductOmit<ExtArgs> | null
+  omit?: Prisma.ProductOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DiscountProductInclude<ExtArgs> | null
-  where?: Prisma.DiscountProductWhereInput
-  orderBy?: Prisma.DiscountProductOrderByWithRelationInput | Prisma.DiscountProductOrderByWithRelationInput[]
-  cursor?: Prisma.DiscountProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DiscountProductScalarFieldEnum | Prisma.DiscountProductScalarFieldEnum[]
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
 }
 
 /**
@@ -2132,47 +1986,23 @@ export type Discount$productsArgs<ExtArgs extends runtime.Types.Extensions.Inter
  */
 export type Discount$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DiscountSubscription
+   * Select specific fields to fetch from the Subscription
    */
-  select?: Prisma.DiscountSubscriptionSelect<ExtArgs> | null
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DiscountSubscription
+   * Omit specific fields from the Subscription
    */
-  omit?: Prisma.DiscountSubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DiscountSubscriptionInclude<ExtArgs> | null
-  where?: Prisma.DiscountSubscriptionWhereInput
-  orderBy?: Prisma.DiscountSubscriptionOrderByWithRelationInput | Prisma.DiscountSubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.DiscountSubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DiscountSubscriptionScalarFieldEnum | Prisma.DiscountSubscriptionScalarFieldEnum[]
-}
-
-/**
- * Discount.applications
- */
-export type Discount$applicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the DiscountApplication
-   */
-  select?: Prisma.DiscountApplicationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the DiscountApplication
-   */
-  omit?: Prisma.DiscountApplicationOmit<ExtArgs> | null
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DiscountApplicationInclude<ExtArgs> | null
-  where?: Prisma.DiscountApplicationWhereInput
-  orderBy?: Prisma.DiscountApplicationOrderByWithRelationInput | Prisma.DiscountApplicationOrderByWithRelationInput[]
-  cursor?: Prisma.DiscountApplicationWhereUniqueInput
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DiscountApplicationScalarFieldEnum | Prisma.DiscountApplicationScalarFieldEnum[]
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**

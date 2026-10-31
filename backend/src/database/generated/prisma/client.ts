@@ -47,16 +47,6 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
- * Model PasswordResetToken
- * 
- */
-export type PasswordResetToken = Prisma.PasswordResetTokenModel
-/**
- * Model Customer
- * 
- */
-export type Customer = Prisma.CustomerModel
-/**
  * Model Tax
  * 
  */
@@ -72,20 +62,10 @@ export type Product = Prisma.ProductModel
  */
 export type ProductVariant = Prisma.ProductVariantModel
 /**
- * Model PaymentTerm
- * 
- */
-export type PaymentTerm = Prisma.PaymentTermModel
-/**
  * Model Plan
  * 
  */
 export type Plan = Prisma.PlanModel
-/**
- * Model PlanProduct
- * 
- */
-export type PlanProduct = Prisma.PlanProductModel
 /**
  * Model QuotationTemplate
  * 
@@ -97,6 +77,11 @@ export type QuotationTemplate = Prisma.QuotationTemplateModel
  */
 export type QuotationTemplateLine = Prisma.QuotationTemplateLineModel
 /**
+ * Model Discount
+ * 
+ */
+export type Discount = Prisma.DiscountModel
+/**
  * Model Subscription
  * 
  */
@@ -106,31 +91,6 @@ export type Subscription = Prisma.SubscriptionModel
  * 
  */
 export type SubscriptionLine = Prisma.SubscriptionLineModel
-/**
- * Model SubscriptionStatusHistory
- * 
- */
-export type SubscriptionStatusHistory = Prisma.SubscriptionStatusHistoryModel
-/**
- * Model Discount
- * 
- */
-export type Discount = Prisma.DiscountModel
-/**
- * Model DiscountProduct
- * 
- */
-export type DiscountProduct = Prisma.DiscountProductModel
-/**
- * Model DiscountSubscription
- * 
- */
-export type DiscountSubscription = Prisma.DiscountSubscriptionModel
-/**
- * Model DiscountApplication
- * 
- */
-export type DiscountApplication = Prisma.DiscountApplicationModel
 /**
  * Model Invoice
  * 
@@ -146,8 +106,3 @@ export type InvoiceLine = Prisma.InvoiceLineModel
  * 
  */
 export type Payment = Prisma.PaymentModel
-/**
- * Model AuditLog
- * 
- */
-export type AuditLog = Prisma.AuditLogModel

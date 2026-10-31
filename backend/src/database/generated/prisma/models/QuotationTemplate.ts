@@ -41,6 +41,8 @@ export type QuotationTemplateMinAggregateOutputType = {
   validityDays: number | null
   description: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type QuotationTemplateMaxAggregateOutputType = {
@@ -50,6 +52,8 @@ export type QuotationTemplateMaxAggregateOutputType = {
   validityDays: number | null
   description: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type QuotationTemplateCountAggregateOutputType = {
@@ -59,6 +63,8 @@ export type QuotationTemplateCountAggregateOutputType = {
   validityDays: number
   description: number
   isActive: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -78,6 +84,8 @@ export type QuotationTemplateMinAggregateInputType = {
   validityDays?: true
   description?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type QuotationTemplateMaxAggregateInputType = {
@@ -87,6 +95,8 @@ export type QuotationTemplateMaxAggregateInputType = {
   validityDays?: true
   description?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type QuotationTemplateCountAggregateInputType = {
@@ -96,6 +106,8 @@ export type QuotationTemplateCountAggregateInputType = {
   validityDays?: true
   description?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -192,6 +204,8 @@ export type QuotationTemplateGroupByOutputType = {
   validityDays: number
   description: string | null
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
   _count: QuotationTemplateCountAggregateOutputType | null
   _avg: QuotationTemplateAvgAggregateOutputType | null
   _sum: QuotationTemplateSumAggregateOutputType | null
@@ -224,8 +238,10 @@ export type QuotationTemplateWhereInput = {
   validityDays?: Prisma.IntFilter<"QuotationTemplate"> | number
   description?: Prisma.StringNullableFilter<"QuotationTemplate"> | string | null
   isActive?: Prisma.BoolFilter<"QuotationTemplate"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  templateLines?: Prisma.QuotationTemplateLineListRelationFilter
+  lines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }
 
@@ -236,8 +252,10 @@ export type QuotationTemplateOrderByWithRelationInput = {
   validityDays?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   plan?: Prisma.PlanOrderByWithRelationInput
-  templateLines?: Prisma.QuotationTemplateLineOrderByRelationAggregateInput
+  lines?: Prisma.QuotationTemplateLineOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
 
@@ -251,8 +269,10 @@ export type QuotationTemplateWhereUniqueInput = Prisma.AtLeast<{
   validityDays?: Prisma.IntFilter<"QuotationTemplate"> | number
   description?: Prisma.StringNullableFilter<"QuotationTemplate"> | string | null
   isActive?: Prisma.BoolFilter<"QuotationTemplate"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
   plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  templateLines?: Prisma.QuotationTemplateLineListRelationFilter
+  lines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }, "id">
 
@@ -263,6 +283,8 @@ export type QuotationTemplateOrderByWithAggregationInput = {
   validityDays?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.QuotationTemplateCountOrderByAggregateInput
   _avg?: Prisma.QuotationTemplateAvgOrderByAggregateInput
   _max?: Prisma.QuotationTemplateMaxOrderByAggregateInput
@@ -280,16 +302,20 @@ export type QuotationTemplateScalarWhereWithAggregatesInput = {
   validityDays?: Prisma.IntWithAggregatesFilter<"QuotationTemplate"> | number
   description?: Prisma.StringNullableWithAggregatesFilter<"QuotationTemplate"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"QuotationTemplate"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuotationTemplate"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuotationTemplate"> | Date | string
 }
 
 export type QuotationTemplateCreateInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutQuotationTemplatesInput
-  templateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
+  lines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTemplateInput
 }
 
@@ -297,10 +323,12 @@ export type QuotationTemplateUncheckedCreateInput = {
   id?: string
   name: string
   planId: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTemplateInput
 }
 
@@ -310,8 +338,10 @@ export type QuotationTemplateUpdateInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutQuotationTemplatesNestedInput
-  templateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
+  lines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTemplateNestedInput
 }
 
@@ -322,7 +352,9 @@ export type QuotationTemplateUncheckedUpdateInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
@@ -330,9 +362,11 @@ export type QuotationTemplateCreateManyInput = {
   id?: string
   name: string
   planId: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type QuotationTemplateUpdateManyMutationInput = {
@@ -341,6 +375,8 @@ export type QuotationTemplateUpdateManyMutationInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type QuotationTemplateUncheckedUpdateManyInput = {
@@ -350,6 +386,8 @@ export type QuotationTemplateUncheckedUpdateManyInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type QuotationTemplateListRelationFilter = {
@@ -369,6 +407,8 @@ export type QuotationTemplateCountOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type QuotationTemplateAvgOrderByAggregateInput = {
@@ -382,6 +422,8 @@ export type QuotationTemplateMaxOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type QuotationTemplateMinOrderByAggregateInput = {
@@ -391,6 +433,8 @@ export type QuotationTemplateMinOrderByAggregateInput = {
   validityDays?: Prisma.SortOrder
   description?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type QuotationTemplateSumOrderByAggregateInput = {
@@ -449,18 +493,18 @@ export type QuotationTemplateUncheckedUpdateManyWithoutPlanNestedInput = {
   deleteMany?: Prisma.QuotationTemplateScalarWhereInput | Prisma.QuotationTemplateScalarWhereInput[]
 }
 
-export type QuotationTemplateCreateNestedOneWithoutTemplateLinesInput = {
-  create?: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutTemplateLinesInput>
-  connectOrCreate?: Prisma.QuotationTemplateCreateOrConnectWithoutTemplateLinesInput
+export type QuotationTemplateCreateNestedOneWithoutLinesInput = {
+  create?: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutLinesInput>
+  connectOrCreate?: Prisma.QuotationTemplateCreateOrConnectWithoutLinesInput
   connect?: Prisma.QuotationTemplateWhereUniqueInput
 }
 
-export type QuotationTemplateUpdateOneRequiredWithoutTemplateLinesNestedInput = {
-  create?: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutTemplateLinesInput>
-  connectOrCreate?: Prisma.QuotationTemplateCreateOrConnectWithoutTemplateLinesInput
-  upsert?: Prisma.QuotationTemplateUpsertWithoutTemplateLinesInput
+export type QuotationTemplateUpdateOneRequiredWithoutLinesNestedInput = {
+  create?: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutLinesInput>
+  connectOrCreate?: Prisma.QuotationTemplateCreateOrConnectWithoutLinesInput
+  upsert?: Prisma.QuotationTemplateUpsertWithoutLinesInput
   connect?: Prisma.QuotationTemplateWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationTemplateUpdateToOneWithWhereWithoutTemplateLinesInput, Prisma.QuotationTemplateUpdateWithoutTemplateLinesInput>, Prisma.QuotationTemplateUncheckedUpdateWithoutTemplateLinesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuotationTemplateUpdateToOneWithWhereWithoutLinesInput, Prisma.QuotationTemplateUpdateWithoutLinesInput>, Prisma.QuotationTemplateUncheckedUpdateWithoutLinesInput>
 }
 
 export type QuotationTemplateCreateNestedOneWithoutSubscriptionsInput = {
@@ -482,20 +526,24 @@ export type QuotationTemplateUpdateOneWithoutSubscriptionsNestedInput = {
 export type QuotationTemplateCreateWithoutPlanInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
-  templateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTemplateInput
 }
 
 export type QuotationTemplateUncheckedCreateWithoutPlanInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTemplateInput
 }
 
@@ -535,82 +583,96 @@ export type QuotationTemplateScalarWhereInput = {
   validityDays?: Prisma.IntFilter<"QuotationTemplate"> | number
   description?: Prisma.StringNullableFilter<"QuotationTemplate"> | string | null
   isActive?: Prisma.BoolFilter<"QuotationTemplate"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"QuotationTemplate"> | Date | string
 }
 
-export type QuotationTemplateCreateWithoutTemplateLinesInput = {
+export type QuotationTemplateCreateWithoutLinesInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutQuotationTemplatesInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutTemplateInput
 }
 
-export type QuotationTemplateUncheckedCreateWithoutTemplateLinesInput = {
+export type QuotationTemplateUncheckedCreateWithoutLinesInput = {
   id?: string
   name: string
   planId: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutTemplateInput
 }
 
-export type QuotationTemplateCreateOrConnectWithoutTemplateLinesInput = {
+export type QuotationTemplateCreateOrConnectWithoutLinesInput = {
   where: Prisma.QuotationTemplateWhereUniqueInput
-  create: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutTemplateLinesInput>
+  create: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutLinesInput>
 }
 
-export type QuotationTemplateUpsertWithoutTemplateLinesInput = {
-  update: Prisma.XOR<Prisma.QuotationTemplateUpdateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedUpdateWithoutTemplateLinesInput>
-  create: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutTemplateLinesInput>
+export type QuotationTemplateUpsertWithoutLinesInput = {
+  update: Prisma.XOR<Prisma.QuotationTemplateUpdateWithoutLinesInput, Prisma.QuotationTemplateUncheckedUpdateWithoutLinesInput>
+  create: Prisma.XOR<Prisma.QuotationTemplateCreateWithoutLinesInput, Prisma.QuotationTemplateUncheckedCreateWithoutLinesInput>
   where?: Prisma.QuotationTemplateWhereInput
 }
 
-export type QuotationTemplateUpdateToOneWithWhereWithoutTemplateLinesInput = {
+export type QuotationTemplateUpdateToOneWithWhereWithoutLinesInput = {
   where?: Prisma.QuotationTemplateWhereInput
-  data: Prisma.XOR<Prisma.QuotationTemplateUpdateWithoutTemplateLinesInput, Prisma.QuotationTemplateUncheckedUpdateWithoutTemplateLinesInput>
+  data: Prisma.XOR<Prisma.QuotationTemplateUpdateWithoutLinesInput, Prisma.QuotationTemplateUncheckedUpdateWithoutLinesInput>
 }
 
-export type QuotationTemplateUpdateWithoutTemplateLinesInput = {
+export type QuotationTemplateUpdateWithoutLinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutQuotationTemplatesNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTemplateNestedInput
 }
 
-export type QuotationTemplateUncheckedUpdateWithoutTemplateLinesInput = {
+export type QuotationTemplateUncheckedUpdateWithoutLinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   planId?: Prisma.StringFieldUpdateOperationsInput | string
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
 export type QuotationTemplateCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
   plan: Prisma.PlanCreateNestedOneWithoutQuotationTemplatesInput
-  templateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
+  lines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutTemplateInput
 }
 
 export type QuotationTemplateUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
   planId: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutTemplateInput
 }
 
 export type QuotationTemplateCreateOrConnectWithoutSubscriptionsInput = {
@@ -635,8 +697,10 @@ export type QuotationTemplateUpdateWithoutSubscriptionsInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plan?: Prisma.PlanUpdateOneRequiredWithoutQuotationTemplatesNestedInput
-  templateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
+  lines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
 }
 
 export type QuotationTemplateUncheckedUpdateWithoutSubscriptionsInput = {
@@ -646,15 +710,19 @@ export type QuotationTemplateUncheckedUpdateWithoutSubscriptionsInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
 export type QuotationTemplateCreateManyPlanInput = {
   id?: string
   name: string
-  validityDays: number
+  validityDays?: number
   description?: string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type QuotationTemplateUpdateWithoutPlanInput = {
@@ -663,7 +731,9 @@ export type QuotationTemplateUpdateWithoutPlanInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  templateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lines?: Prisma.QuotationTemplateLineUpdateManyWithoutTemplateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutTemplateNestedInput
 }
 
@@ -673,7 +743,9 @@ export type QuotationTemplateUncheckedUpdateWithoutPlanInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  templateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
@@ -683,6 +755,8 @@ export type QuotationTemplateUncheckedUpdateManyWithoutPlanInput = {
   validityDays?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -691,12 +765,12 @@ export type QuotationTemplateUncheckedUpdateManyWithoutPlanInput = {
  */
 
 export type QuotationTemplateCountOutputType = {
-  templateLines: number
+  lines: number
   subscriptions: number
 }
 
 export type QuotationTemplateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  templateLines?: boolean | QuotationTemplateCountOutputTypeCountTemplateLinesArgs
+  lines?: boolean | QuotationTemplateCountOutputTypeCountLinesArgs
   subscriptions?: boolean | QuotationTemplateCountOutputTypeCountSubscriptionsArgs
 }
 
@@ -713,7 +787,7 @@ export type QuotationTemplateCountOutputTypeDefaultArgs<ExtArgs extends runtime.
 /**
  * QuotationTemplateCountOutputType without action
  */
-export type QuotationTemplateCountOutputTypeCountTemplateLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type QuotationTemplateCountOutputTypeCountLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QuotationTemplateLineWhereInput
 }
 
@@ -732,8 +806,10 @@ export type QuotationTemplateSelect<ExtArgs extends runtime.Types.Extensions.Int
   validityDays?: boolean
   description?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  templateLines?: boolean | Prisma.QuotationTemplate$templateLinesArgs<ExtArgs>
+  lines?: boolean | Prisma.QuotationTemplate$linesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.QuotationTemplate$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationTemplateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quotationTemplate"]>
@@ -745,6 +821,8 @@ export type QuotationTemplateSelectCreateManyAndReturn<ExtArgs extends runtime.T
   validityDays?: boolean
   description?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quotationTemplate"]>
 
@@ -755,6 +833,8 @@ export type QuotationTemplateSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   validityDays?: boolean
   description?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quotationTemplate"]>
 
@@ -765,12 +845,14 @@ export type QuotationTemplateSelectScalar = {
   validityDays?: boolean
   description?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type QuotationTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "planId" | "validityDays" | "description" | "isActive", ExtArgs["result"]["quotationTemplate"]>
+export type QuotationTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "planId" | "validityDays" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["quotationTemplate"]>
 export type QuotationTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  templateLines?: boolean | Prisma.QuotationTemplate$templateLinesArgs<ExtArgs>
+  lines?: boolean | Prisma.QuotationTemplate$linesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.QuotationTemplate$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.QuotationTemplateCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -785,7 +867,7 @@ export type $QuotationTemplatePayload<ExtArgs extends runtime.Types.Extensions.I
   name: "QuotationTemplate"
   objects: {
     plan: Prisma.$PlanPayload<ExtArgs>
-    templateLines: Prisma.$QuotationTemplateLinePayload<ExtArgs>[]
+    lines: Prisma.$QuotationTemplateLinePayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -795,6 +877,8 @@ export type $QuotationTemplatePayload<ExtArgs extends runtime.Types.Extensions.I
     validityDays: number
     description: string | null
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["quotationTemplate"]>
   composites: {}
 }
@@ -1190,7 +1274,7 @@ readonly fields: QuotationTemplateFieldRefs;
 export interface Prisma__QuotationTemplateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   plan<T extends Prisma.PlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanDefaultArgs<ExtArgs>>): Prisma.Prisma__PlanClient<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  templateLines<T extends Prisma.QuotationTemplate$templateLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationTemplate$templateLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationTemplateLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lines<T extends Prisma.QuotationTemplate$linesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationTemplate$linesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationTemplateLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.QuotationTemplate$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuotationTemplate$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1227,6 +1311,8 @@ export interface QuotationTemplateFieldRefs {
   readonly validityDays: Prisma.FieldRef<"QuotationTemplate", 'Int'>
   readonly description: Prisma.FieldRef<"QuotationTemplate", 'String'>
   readonly isActive: Prisma.FieldRef<"QuotationTemplate", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"QuotationTemplate", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"QuotationTemplate", 'DateTime'>
 }
     
 
@@ -1628,9 +1714,9 @@ export type QuotationTemplateDeleteManyArgs<ExtArgs extends runtime.Types.Extens
 }
 
 /**
- * QuotationTemplate.templateLines
+ * QuotationTemplate.lines
  */
-export type QuotationTemplate$templateLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type QuotationTemplate$linesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the QuotationTemplateLine
    */

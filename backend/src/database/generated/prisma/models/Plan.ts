@@ -50,6 +50,8 @@ export type PlanMinAggregateOutputType = {
   allowPause: boolean | null
   allowRenewal: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PlanMaxAggregateOutputType = {
@@ -66,6 +68,8 @@ export type PlanMaxAggregateOutputType = {
   allowPause: boolean | null
   allowRenewal: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type PlanCountAggregateOutputType = {
@@ -82,6 +86,8 @@ export type PlanCountAggregateOutputType = {
   allowPause: number
   allowRenewal: number
   isActive: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -110,6 +116,8 @@ export type PlanMinAggregateInputType = {
   allowPause?: true
   allowRenewal?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type PlanMaxAggregateInputType = {
@@ -126,6 +134,8 @@ export type PlanMaxAggregateInputType = {
   allowPause?: true
   allowRenewal?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type PlanCountAggregateInputType = {
@@ -142,6 +152,8 @@ export type PlanCountAggregateInputType = {
   allowPause?: true
   allowRenewal?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -245,6 +257,8 @@ export type PlanGroupByOutputType = {
   allowPause: boolean
   allowRenewal: boolean
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
   _count: PlanCountAggregateOutputType | null
   _avg: PlanAvgAggregateOutputType | null
   _sum: PlanSumAggregateOutputType | null
@@ -284,7 +298,8 @@ export type PlanWhereInput = {
   allowPause?: Prisma.BoolFilter<"Plan"> | boolean
   allowRenewal?: Prisma.BoolFilter<"Plan"> | boolean
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
-  planProducts?: Prisma.PlanProductListRelationFilter
+  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   quotationTemplates?: Prisma.QuotationTemplateListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }
@@ -303,7 +318,8 @@ export type PlanOrderByWithRelationInput = {
   allowPause?: Prisma.SortOrder
   allowRenewal?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  planProducts?: Prisma.PlanProductOrderByRelationAggregateInput
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   quotationTemplates?: Prisma.QuotationTemplateOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
@@ -325,7 +341,8 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   allowPause?: Prisma.BoolFilter<"Plan"> | boolean
   allowRenewal?: Prisma.BoolFilter<"Plan"> | boolean
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
-  planProducts?: Prisma.PlanProductListRelationFilter
+  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   quotationTemplates?: Prisma.QuotationTemplateListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }, "id">
@@ -344,6 +361,8 @@ export type PlanOrderByWithAggregationInput = {
   allowPause?: Prisma.SortOrder
   allowRenewal?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
   _avg?: Prisma.PlanAvgOrderByAggregateInput
   _max?: Prisma.PlanMaxOrderByAggregateInput
@@ -368,6 +387,8 @@ export type PlanScalarWhereWithAggregatesInput = {
   allowPause?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   allowRenewal?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
 
 export type PlanCreateInput = {
@@ -384,7 +405,8 @@ export type PlanCreateInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   quotationTemplates?: Prisma.QuotationTemplateCreateNestedManyWithoutPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
@@ -403,7 +425,8 @@ export type PlanUncheckedCreateInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   quotationTemplates?: Prisma.QuotationTemplateUncheckedCreateNestedManyWithoutPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
@@ -422,7 +445,8 @@ export type PlanUpdateInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationTemplates?: Prisma.QuotationTemplateUpdateManyWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
@@ -441,7 +465,8 @@ export type PlanUncheckedUpdateInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationTemplates?: Prisma.QuotationTemplateUncheckedUpdateManyWithoutPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
@@ -460,6 +485,8 @@ export type PlanCreateManyInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type PlanUpdateManyMutationInput = {
@@ -476,6 +503,8 @@ export type PlanUpdateManyMutationInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanUncheckedUpdateManyInput = {
@@ -492,6 +521,8 @@ export type PlanUncheckedUpdateManyInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanCountOrderByAggregateInput = {
@@ -508,6 +539,8 @@ export type PlanCountOrderByAggregateInput = {
   allowPause?: Prisma.SortOrder
   allowRenewal?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PlanAvgOrderByAggregateInput = {
@@ -529,6 +562,8 @@ export type PlanMaxOrderByAggregateInput = {
   allowPause?: Prisma.SortOrder
   allowRenewal?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PlanMinOrderByAggregateInput = {
@@ -545,6 +580,8 @@ export type PlanMinOrderByAggregateInput = {
   allowPause?: Prisma.SortOrder
   allowRenewal?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type PlanSumOrderByAggregateInput = {
@@ -561,18 +598,12 @@ export type EnumBillingPeriodFieldUpdateOperationsInput = {
   set?: $Enums.BillingPeriod
 }
 
-export type PlanCreateNestedOneWithoutPlanProductsInput = {
-  create?: Prisma.XOR<Prisma.PlanCreateWithoutPlanProductsInput, Prisma.PlanUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutPlanProductsInput
-  connect?: Prisma.PlanWhereUniqueInput
-}
-
-export type PlanUpdateOneRequiredWithoutPlanProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanCreateWithoutPlanProductsInput, Prisma.PlanUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutPlanProductsInput
-  upsert?: Prisma.PlanUpsertWithoutPlanProductsInput
-  connect?: Prisma.PlanWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutPlanProductsInput, Prisma.PlanUpdateWithoutPlanProductsInput>, Prisma.PlanUncheckedUpdateWithoutPlanProductsInput>
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type PlanCreateNestedOneWithoutQuotationTemplatesInput = {
@@ -603,94 +634,6 @@ export type PlanUpdateOneRequiredWithoutSubscriptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.PlanUpdateWithoutSubscriptionsInput>, Prisma.PlanUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type PlanCreateWithoutPlanProductsInput = {
-  id?: string
-  name: string
-  description?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  billingPeriod: $Enums.BillingPeriod
-  minQuantity?: number
-  availableFrom?: Date | string | null
-  availableTo?: Date | string | null
-  autoClose?: boolean
-  allowEarlyClose?: boolean
-  allowPause?: boolean
-  allowRenewal?: boolean
-  isActive?: boolean
-  quotationTemplates?: Prisma.QuotationTemplateCreateNestedManyWithoutPlanInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
-}
-
-export type PlanUncheckedCreateWithoutPlanProductsInput = {
-  id?: string
-  name: string
-  description?: string | null
-  price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  billingPeriod: $Enums.BillingPeriod
-  minQuantity?: number
-  availableFrom?: Date | string | null
-  availableTo?: Date | string | null
-  autoClose?: boolean
-  allowEarlyClose?: boolean
-  allowPause?: boolean
-  allowRenewal?: boolean
-  isActive?: boolean
-  quotationTemplates?: Prisma.QuotationTemplateUncheckedCreateNestedManyWithoutPlanInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
-}
-
-export type PlanCreateOrConnectWithoutPlanProductsInput = {
-  where: Prisma.PlanWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlanCreateWithoutPlanProductsInput, Prisma.PlanUncheckedCreateWithoutPlanProductsInput>
-}
-
-export type PlanUpsertWithoutPlanProductsInput = {
-  update: Prisma.XOR<Prisma.PlanUpdateWithoutPlanProductsInput, Prisma.PlanUncheckedUpdateWithoutPlanProductsInput>
-  create: Prisma.XOR<Prisma.PlanCreateWithoutPlanProductsInput, Prisma.PlanUncheckedCreateWithoutPlanProductsInput>
-  where?: Prisma.PlanWhereInput
-}
-
-export type PlanUpdateToOneWithWhereWithoutPlanProductsInput = {
-  where?: Prisma.PlanWhereInput
-  data: Prisma.XOR<Prisma.PlanUpdateWithoutPlanProductsInput, Prisma.PlanUncheckedUpdateWithoutPlanProductsInput>
-}
-
-export type PlanUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  billingPeriod?: Prisma.EnumBillingPeriodFieldUpdateOperationsInput | $Enums.BillingPeriod
-  minQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  availableFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  availableTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  autoClose?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowEarlyClose?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  quotationTemplates?: Prisma.QuotationTemplateUpdateManyWithoutPlanNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
-}
-
-export type PlanUncheckedUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  billingPeriod?: Prisma.EnumBillingPeriodFieldUpdateOperationsInput | $Enums.BillingPeriod
-  minQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  availableFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  availableTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  autoClose?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowEarlyClose?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  quotationTemplates?: Prisma.QuotationTemplateUncheckedUpdateManyWithoutPlanNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
-}
-
 export type PlanCreateWithoutQuotationTemplatesInput = {
   id?: string
   name: string
@@ -705,7 +648,8 @@ export type PlanCreateWithoutQuotationTemplatesInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
 
@@ -723,7 +667,8 @@ export type PlanUncheckedCreateWithoutQuotationTemplatesInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
 
@@ -757,7 +702,8 @@ export type PlanUpdateWithoutQuotationTemplatesInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
 
@@ -775,7 +721,8 @@ export type PlanUncheckedUpdateWithoutQuotationTemplatesInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
 
@@ -793,7 +740,8 @@ export type PlanCreateWithoutSubscriptionsInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   quotationTemplates?: Prisma.QuotationTemplateCreateNestedManyWithoutPlanInput
 }
 
@@ -811,7 +759,8 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutPlanInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
   quotationTemplates?: Prisma.QuotationTemplateUncheckedCreateNestedManyWithoutPlanInput
 }
 
@@ -845,7 +794,8 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationTemplates?: Prisma.QuotationTemplateUpdateManyWithoutPlanNestedInput
 }
 
@@ -863,7 +813,8 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   allowPause?: Prisma.BoolFieldUpdateOperationsInput | boolean
   allowRenewal?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutPlanNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quotationTemplates?: Prisma.QuotationTemplateUncheckedUpdateManyWithoutPlanNestedInput
 }
 
@@ -873,13 +824,11 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
  */
 
 export type PlanCountOutputType = {
-  planProducts: number
   quotationTemplates: number
   subscriptions: number
 }
 
 export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planProducts?: boolean | PlanCountOutputTypeCountPlanProductsArgs
   quotationTemplates?: boolean | PlanCountOutputTypeCountQuotationTemplatesArgs
   subscriptions?: boolean | PlanCountOutputTypeCountSubscriptionsArgs
 }
@@ -892,13 +841,6 @@ export type PlanCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the PlanCountOutputType
    */
   select?: Prisma.PlanCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * PlanCountOutputType without action
- */
-export type PlanCountOutputTypeCountPlanProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PlanProductWhereInput
 }
 
 /**
@@ -930,7 +872,8 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
-  planProducts?: boolean | Prisma.Plan$planProductsArgs<ExtArgs>
+  createdAt?: boolean
+  updatedAt?: boolean
   quotationTemplates?: boolean | Prisma.Plan$quotationTemplatesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
@@ -950,6 +893,8 @@ export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -966,6 +911,8 @@ export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectScalar = {
@@ -982,11 +929,12 @@ export type PlanSelectScalar = {
   allowPause?: boolean
   allowRenewal?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "billingPeriod" | "minQuantity" | "availableFrom" | "availableTo" | "autoClose" | "allowEarlyClose" | "allowPause" | "allowRenewal" | "isActive", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "billingPeriod" | "minQuantity" | "availableFrom" | "availableTo" | "autoClose" | "allowEarlyClose" | "allowPause" | "allowRenewal" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planProducts?: boolean | Prisma.Plan$planProductsArgs<ExtArgs>
   quotationTemplates?: boolean | Prisma.Plan$quotationTemplatesArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
@@ -997,7 +945,6 @@ export type PlanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Plan"
   objects: {
-    planProducts: Prisma.$PlanProductPayload<ExtArgs>[]
     quotationTemplates: Prisma.$QuotationTemplatePayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
@@ -1015,6 +962,8 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     allowPause: boolean
     allowRenewal: boolean
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["plan"]>
   composites: {}
 }
@@ -1409,7 +1358,6 @@ readonly fields: PlanFieldRefs;
  */
 export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  planProducts<T extends Prisma.Plan$planProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$planProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotationTemplates<T extends Prisma.Plan$quotationTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$quotationTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1454,6 +1402,8 @@ export interface PlanFieldRefs {
   readonly allowPause: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly allowRenewal: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"Plan", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }
     
 
@@ -1844,30 +1794,6 @@ export type PlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Plans to delete.
    */
   limit?: number
-}
-
-/**
- * Plan.planProducts
- */
-export type Plan$planProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PlanProduct
-   */
-  select?: Prisma.PlanProductSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PlanProduct
-   */
-  omit?: Prisma.PlanProductOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlanProductInclude<ExtArgs> | null
-  where?: Prisma.PlanProductWhereInput
-  orderBy?: Prisma.PlanProductOrderByWithRelationInput | Prisma.PlanProductOrderByWithRelationInput[]
-  cursor?: Prisma.PlanProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PlanProductScalarFieldEnum | Prisma.PlanProductScalarFieldEnum[]
 }
 
 /**

@@ -288,9 +288,9 @@ export type QuotationTemplateLineScalarWhereWithAggregatesInput = {
 
 export type QuotationTemplateLineCreateInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  template: Prisma.QuotationTemplateCreateNestedOneWithoutTemplateLinesInput
+  template: Prisma.QuotationTemplateCreateNestedOneWithoutLinesInput
   product: Prisma.ProductCreateNestedOneWithoutQuotationTemplateLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutQuotationTemplateLinesInput
 }
@@ -300,7 +300,7 @@ export type QuotationTemplateLineUncheckedCreateInput = {
   templateId: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -308,7 +308,7 @@ export type QuotationTemplateLineUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutTemplateLinesNestedInput
+  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutLinesNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutQuotationTemplateLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutQuotationTemplateLinesNestedInput
 }
@@ -327,7 +327,7 @@ export type QuotationTemplateLineCreateManyInput = {
   templateId: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -521,9 +521,9 @@ export type QuotationTemplateLineUncheckedUpdateManyWithoutTemplateNestedInput =
 
 export type QuotationTemplateLineCreateWithoutProductInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  template: Prisma.QuotationTemplateCreateNestedOneWithoutTemplateLinesInput
+  template: Prisma.QuotationTemplateCreateNestedOneWithoutLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutQuotationTemplateLinesInput
 }
 
@@ -531,7 +531,7 @@ export type QuotationTemplateLineUncheckedCreateWithoutProductInput = {
   id?: string
   templateId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -575,9 +575,9 @@ export type QuotationTemplateLineScalarWhereInput = {
 
 export type QuotationTemplateLineCreateWithoutVariantInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  template: Prisma.QuotationTemplateCreateNestedOneWithoutTemplateLinesInput
+  template: Prisma.QuotationTemplateCreateNestedOneWithoutLinesInput
   product: Prisma.ProductCreateNestedOneWithoutQuotationTemplateLinesInput
 }
 
@@ -585,7 +585,7 @@ export type QuotationTemplateLineUncheckedCreateWithoutVariantInput = {
   id?: string
   templateId: string
   productId: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -617,7 +617,7 @@ export type QuotationTemplateLineUpdateManyWithWhereWithoutVariantInput = {
 
 export type QuotationTemplateLineCreateWithoutTemplateInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   product: Prisma.ProductCreateNestedOneWithoutQuotationTemplateLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutQuotationTemplateLinesInput
@@ -627,7 +627,7 @@ export type QuotationTemplateLineUncheckedCreateWithoutTemplateInput = {
   id?: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -661,7 +661,7 @@ export type QuotationTemplateLineCreateManyProductInput = {
   id?: string
   templateId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -669,7 +669,7 @@ export type QuotationTemplateLineUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutTemplateLinesNestedInput
+  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutQuotationTemplateLinesNestedInput
 }
 
@@ -693,7 +693,7 @@ export type QuotationTemplateLineCreateManyVariantInput = {
   id?: string
   templateId: string
   productId: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
@@ -701,7 +701,7 @@ export type QuotationTemplateLineUpdateWithoutVariantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutTemplateLinesNestedInput
+  template?: Prisma.QuotationTemplateUpdateOneRequiredWithoutLinesNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutQuotationTemplateLinesNestedInput
 }
 
@@ -725,7 +725,7 @@ export type QuotationTemplateLineCreateManyTemplateInput = {
   id?: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 

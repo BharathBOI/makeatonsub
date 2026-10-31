@@ -59,8 +59,8 @@ export type DiscountType = (typeof DiscountType)[keyof typeof DiscountType]
 
 
 export const DiscountScope = {
-  PRODUCT: 'PRODUCT',
-  SUBSCRIPTION: 'SUBSCRIPTION'
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  PRODUCT: 'PRODUCT'
 } as const
 
 export type DiscountScope = (typeof DiscountScope)[keyof typeof DiscountScope]

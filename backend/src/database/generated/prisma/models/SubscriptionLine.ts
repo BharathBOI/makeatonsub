@@ -29,13 +29,13 @@ export type AggregateSubscriptionLine = {
 export type SubscriptionLineAvgAggregateOutputType = {
   quantity: number | null
   unitPrice: runtime.Decimal | null
-  lineTotal: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type SubscriptionLineSumAggregateOutputType = {
   quantity: number | null
   unitPrice: runtime.Decimal | null
-  lineTotal: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type SubscriptionLineMinAggregateOutputType = {
@@ -46,7 +46,7 @@ export type SubscriptionLineMinAggregateOutputType = {
   taxId: string | null
   quantity: number | null
   unitPrice: runtime.Decimal | null
-  lineTotal: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type SubscriptionLineMaxAggregateOutputType = {
@@ -57,7 +57,7 @@ export type SubscriptionLineMaxAggregateOutputType = {
   taxId: string | null
   quantity: number | null
   unitPrice: runtime.Decimal | null
-  lineTotal: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type SubscriptionLineCountAggregateOutputType = {
@@ -68,7 +68,7 @@ export type SubscriptionLineCountAggregateOutputType = {
   taxId: number
   quantity: number
   unitPrice: number
-  lineTotal: number
+  amount: number
   _all: number
 }
 
@@ -76,13 +76,13 @@ export type SubscriptionLineCountAggregateOutputType = {
 export type SubscriptionLineAvgAggregateInputType = {
   quantity?: true
   unitPrice?: true
-  lineTotal?: true
+  amount?: true
 }
 
 export type SubscriptionLineSumAggregateInputType = {
   quantity?: true
   unitPrice?: true
-  lineTotal?: true
+  amount?: true
 }
 
 export type SubscriptionLineMinAggregateInputType = {
@@ -93,7 +93,7 @@ export type SubscriptionLineMinAggregateInputType = {
   taxId?: true
   quantity?: true
   unitPrice?: true
-  lineTotal?: true
+  amount?: true
 }
 
 export type SubscriptionLineMaxAggregateInputType = {
@@ -104,7 +104,7 @@ export type SubscriptionLineMaxAggregateInputType = {
   taxId?: true
   quantity?: true
   unitPrice?: true
-  lineTotal?: true
+  amount?: true
 }
 
 export type SubscriptionLineCountAggregateInputType = {
@@ -115,7 +115,7 @@ export type SubscriptionLineCountAggregateInputType = {
   taxId?: true
   quantity?: true
   unitPrice?: true
-  lineTotal?: true
+  amount?: true
   _all?: true
 }
 
@@ -213,7 +213,7 @@ export type SubscriptionLineGroupByOutputType = {
   taxId: string | null
   quantity: number
   unitPrice: runtime.Decimal
-  lineTotal: runtime.Decimal
+  amount: runtime.Decimal
   _count: SubscriptionLineCountAggregateOutputType | null
   _avg: SubscriptionLineAvgAggregateOutputType | null
   _sum: SubscriptionLineSumAggregateOutputType | null
@@ -247,7 +247,7 @@ export type SubscriptionLineWhereInput = {
   taxId?: Prisma.UuidNullableFilter<"SubscriptionLine"> | string | null
   quantity?: Prisma.IntFilter<"SubscriptionLine"> | number
   unitPrice?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   variant?: Prisma.XOR<Prisma.ProductVariantNullableScalarRelationFilter, Prisma.ProductVariantWhereInput> | null
@@ -262,7 +262,7 @@ export type SubscriptionLineOrderByWithRelationInput = {
   taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   subscription?: Prisma.SubscriptionOrderByWithRelationInput
   product?: Prisma.ProductOrderByWithRelationInput
   variant?: Prisma.ProductVariantOrderByWithRelationInput
@@ -280,7 +280,7 @@ export type SubscriptionLineWhereUniqueInput = Prisma.AtLeast<{
   taxId?: Prisma.UuidNullableFilter<"SubscriptionLine"> | string | null
   quantity?: Prisma.IntFilter<"SubscriptionLine"> | number
   unitPrice?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   variant?: Prisma.XOR<Prisma.ProductVariantNullableScalarRelationFilter, Prisma.ProductVariantWhereInput> | null
@@ -295,7 +295,7 @@ export type SubscriptionLineOrderByWithAggregationInput = {
   taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   _count?: Prisma.SubscriptionLineCountOrderByAggregateInput
   _avg?: Prisma.SubscriptionLineAvgOrderByAggregateInput
   _max?: Prisma.SubscriptionLineMaxOrderByAggregateInput
@@ -314,14 +314,14 @@ export type SubscriptionLineScalarWhereWithAggregatesInput = {
   taxId?: Prisma.UuidNullableWithAggregatesFilter<"SubscriptionLine"> | string | null
   quantity?: Prisma.IntWithAggregatesFilter<"SubscriptionLine"> | number
   unitPrice?: Prisma.DecimalWithAggregatesFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalWithAggregatesFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalWithAggregatesFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLinesInput
   product: Prisma.ProductCreateNestedOneWithoutSubscriptionLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutSubscriptionLinesInput
@@ -334,16 +334,16 @@ export type SubscriptionLineUncheckedCreateInput = {
   productId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLinesNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutSubscriptionLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutSubscriptionLinesNestedInput
@@ -358,7 +358,7 @@ export type SubscriptionLineUncheckedUpdateInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateManyInput = {
@@ -367,16 +367,16 @@ export type SubscriptionLineCreateManyInput = {
   productId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUncheckedUpdateManyInput = {
@@ -387,7 +387,7 @@ export type SubscriptionLineUncheckedUpdateManyInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineListRelationFilter = {
@@ -408,13 +408,13 @@ export type SubscriptionLineCountOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type SubscriptionLineAvgOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type SubscriptionLineMaxOrderByAggregateInput = {
@@ -425,7 +425,7 @@ export type SubscriptionLineMaxOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type SubscriptionLineMinOrderByAggregateInput = {
@@ -436,13 +436,13 @@ export type SubscriptionLineMinOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type SubscriptionLineSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   unitPrice?: Prisma.SortOrder
-  lineTotal?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type SubscriptionLineCreateNestedManyWithoutTaxInput = {
@@ -615,9 +615,9 @@ export type SubscriptionLineUncheckedUpdateManyWithoutSubscriptionNestedInput = 
 
 export type SubscriptionLineCreateWithoutTaxInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLinesInput
   product: Prisma.ProductCreateNestedOneWithoutSubscriptionLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutSubscriptionLinesInput
@@ -628,9 +628,9 @@ export type SubscriptionLineUncheckedCreateWithoutTaxInput = {
   subscriptionId: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateOrConnectWithoutTaxInput = {
@@ -670,14 +670,14 @@ export type SubscriptionLineScalarWhereInput = {
   taxId?: Prisma.UuidNullableFilter<"SubscriptionLine"> | string | null
   quantity?: Prisma.IntFilter<"SubscriptionLine"> | number
   unitPrice?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFilter<"SubscriptionLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateWithoutProductInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutSubscriptionLinesInput
   tax?: Prisma.TaxCreateNestedOneWithoutSubscriptionLinesInput
@@ -688,9 +688,9 @@ export type SubscriptionLineUncheckedCreateWithoutProductInput = {
   subscriptionId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateOrConnectWithoutProductInput = {
@@ -721,9 +721,9 @@ export type SubscriptionLineUpdateManyWithWhereWithoutProductInput = {
 
 export type SubscriptionLineCreateWithoutVariantInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription: Prisma.SubscriptionCreateNestedOneWithoutLinesInput
   product: Prisma.ProductCreateNestedOneWithoutSubscriptionLinesInput
   tax?: Prisma.TaxCreateNestedOneWithoutSubscriptionLinesInput
@@ -734,9 +734,9 @@ export type SubscriptionLineUncheckedCreateWithoutVariantInput = {
   subscriptionId: string
   productId: string
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateOrConnectWithoutVariantInput = {
@@ -767,9 +767,9 @@ export type SubscriptionLineUpdateManyWithWhereWithoutVariantInput = {
 
 export type SubscriptionLineCreateWithoutSubscriptionInput = {
   id?: string
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   product: Prisma.ProductCreateNestedOneWithoutSubscriptionLinesInput
   variant?: Prisma.ProductVariantCreateNestedOneWithoutSubscriptionLinesInput
   tax?: Prisma.TaxCreateNestedOneWithoutSubscriptionLinesInput
@@ -780,9 +780,9 @@ export type SubscriptionLineUncheckedCreateWithoutSubscriptionInput = {
   productId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateOrConnectWithoutSubscriptionInput = {
@@ -816,16 +816,16 @@ export type SubscriptionLineCreateManyTaxInput = {
   subscriptionId: string
   productId: string
   variantId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateWithoutTaxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLinesNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutSubscriptionLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutSubscriptionLinesNestedInput
@@ -838,7 +838,7 @@ export type SubscriptionLineUncheckedUpdateWithoutTaxInput = {
   variantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUncheckedUpdateManyWithoutTaxInput = {
@@ -848,7 +848,7 @@ export type SubscriptionLineUncheckedUpdateManyWithoutTaxInput = {
   variantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateManyProductInput = {
@@ -856,16 +856,16 @@ export type SubscriptionLineCreateManyProductInput = {
   subscriptionId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutSubscriptionLinesNestedInput
   tax?: Prisma.TaxUpdateOneWithoutSubscriptionLinesNestedInput
@@ -878,7 +878,7 @@ export type SubscriptionLineUncheckedUpdateWithoutProductInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUncheckedUpdateManyWithoutProductInput = {
@@ -888,7 +888,7 @@ export type SubscriptionLineUncheckedUpdateManyWithoutProductInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateManyVariantInput = {
@@ -896,16 +896,16 @@ export type SubscriptionLineCreateManyVariantInput = {
   subscriptionId: string
   productId: string
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateWithoutVariantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutLinesNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutSubscriptionLinesNestedInput
   tax?: Prisma.TaxUpdateOneWithoutSubscriptionLinesNestedInput
@@ -918,7 +918,7 @@ export type SubscriptionLineUncheckedUpdateWithoutVariantInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUncheckedUpdateManyWithoutVariantInput = {
@@ -928,7 +928,7 @@ export type SubscriptionLineUncheckedUpdateManyWithoutVariantInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineCreateManySubscriptionInput = {
@@ -936,16 +936,16 @@ export type SubscriptionLineCreateManySubscriptionInput = {
   productId: string
   variantId?: string | null
   taxId?: string | null
-  quantity: number
+  quantity?: number
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUpdateWithoutSubscriptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   product?: Prisma.ProductUpdateOneRequiredWithoutSubscriptionLinesNestedInput
   variant?: Prisma.ProductVariantUpdateOneWithoutSubscriptionLinesNestedInput
   tax?: Prisma.TaxUpdateOneWithoutSubscriptionLinesNestedInput
@@ -958,7 +958,7 @@ export type SubscriptionLineUncheckedUpdateWithoutSubscriptionInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type SubscriptionLineUncheckedUpdateManyWithoutSubscriptionInput = {
@@ -968,7 +968,7 @@ export type SubscriptionLineUncheckedUpdateManyWithoutSubscriptionInput = {
   taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  lineTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -981,7 +981,7 @@ export type SubscriptionLineSelect<ExtArgs extends runtime.Types.Extensions.Inte
   taxId?: boolean
   quantity?: boolean
   unitPrice?: boolean
-  lineTotal?: boolean
+  amount?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.SubscriptionLine$variantArgs<ExtArgs>
@@ -996,7 +996,7 @@ export type SubscriptionLineSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   taxId?: boolean
   quantity?: boolean
   unitPrice?: boolean
-  lineTotal?: boolean
+  amount?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.SubscriptionLine$variantArgs<ExtArgs>
@@ -1011,7 +1011,7 @@ export type SubscriptionLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   taxId?: boolean
   quantity?: boolean
   unitPrice?: boolean
-  lineTotal?: boolean
+  amount?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   variant?: boolean | Prisma.SubscriptionLine$variantArgs<ExtArgs>
@@ -1026,10 +1026,10 @@ export type SubscriptionLineSelectScalar = {
   taxId?: boolean
   quantity?: boolean
   unitPrice?: boolean
-  lineTotal?: boolean
+  amount?: boolean
 }
 
-export type SubscriptionLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subscriptionId" | "productId" | "variantId" | "taxId" | "quantity" | "unitPrice" | "lineTotal", ExtArgs["result"]["subscriptionLine"]>
+export type SubscriptionLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subscriptionId" | "productId" | "variantId" | "taxId" | "quantity" | "unitPrice" | "amount", ExtArgs["result"]["subscriptionLine"]>
 export type SubscriptionLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
@@ -1065,7 +1065,7 @@ export type $SubscriptionLinePayload<ExtArgs extends runtime.Types.Extensions.In
     taxId: string | null
     quantity: number
     unitPrice: runtime.Decimal
-    lineTotal: runtime.Decimal
+    amount: runtime.Decimal
   }, ExtArgs["result"]["subscriptionLine"]>
   composites: {}
 }
@@ -1500,7 +1500,7 @@ export interface SubscriptionLineFieldRefs {
   readonly taxId: Prisma.FieldRef<"SubscriptionLine", 'String'>
   readonly quantity: Prisma.FieldRef<"SubscriptionLine", 'Int'>
   readonly unitPrice: Prisma.FieldRef<"SubscriptionLine", 'Decimal'>
-  readonly lineTotal: Prisma.FieldRef<"SubscriptionLine", 'Decimal'>
+  readonly amount: Prisma.FieldRef<"SubscriptionLine", 'Decimal'>
 }
     
 

@@ -52,27 +52,18 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  PasswordResetToken: 'PasswordResetToken',
-  Customer: 'Customer',
   Tax: 'Tax',
   Product: 'Product',
   ProductVariant: 'ProductVariant',
-  PaymentTerm: 'PaymentTerm',
   Plan: 'Plan',
-  PlanProduct: 'PlanProduct',
   QuotationTemplate: 'QuotationTemplate',
   QuotationTemplateLine: 'QuotationTemplateLine',
+  Discount: 'Discount',
   Subscription: 'Subscription',
   SubscriptionLine: 'SubscriptionLine',
-  SubscriptionStatusHistory: 'SubscriptionStatusHistory',
-  Discount: 'Discount',
-  DiscountProduct: 'DiscountProduct',
-  DiscountSubscription: 'DiscountSubscription',
-  DiscountApplication: 'DiscountApplication',
   Invoice: 'Invoice',
   InvoiceLine: 'InvoiceLine',
-  Payment: 'Payment',
-  AuditLog: 'AuditLog'
+  Payment: 'Payment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -97,37 +88,18 @@ export const UserScalarFieldEnum = {
   email: 'email',
   passwordHash: 'passwordHash',
   role: 'role',
+  companyName: 'companyName',
+  phone: 'phone',
+  billingAddress: 'billingAddress',
+  taxNumber: 'taxNumber',
+  resetToken: 'resetToken',
+  resetTokenExpiry: 'resetTokenExpiry',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const PasswordResetTokenScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tokenHash: 'tokenHash',
-  expiresAt: 'expiresAt',
-  usedAt: 'usedAt',
-  createdAt: 'createdAt'
-} as const
-
-export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
-
-
-export const CustomerScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  companyName: 'companyName',
-  phone: 'phone',
-  billingAddress: 'billingAddress',
-  taxNumber: 'taxNumber',
-  createdAt: 'createdAt'
-} as const
-
-export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
 
 
 export const TaxScalarFieldEnum = {
@@ -146,8 +118,8 @@ export const ProductScalarFieldEnum = {
   type: 'type',
   salesPrice: 'salesPrice',
   costPrice: 'costPrice',
-  defaultTaxId: 'defaultTaxId',
   notes: 'notes',
+  taxId: 'taxId',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -168,15 +140,6 @@ export const ProductVariantScalarFieldEnum = {
 export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnum)[keyof typeof ProductVariantScalarFieldEnum]
 
 
-export const PaymentTermScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  dueDays: 'dueDays'
-} as const
-
-export type PaymentTermScalarFieldEnum = (typeof PaymentTermScalarFieldEnum)[keyof typeof PaymentTermScalarFieldEnum]
-
-
 export const PlanScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -190,22 +153,12 @@ export const PlanScalarFieldEnum = {
   allowEarlyClose: 'allowEarlyClose',
   allowPause: 'allowPause',
   allowRenewal: 'allowRenewal',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
-
-
-export const PlanProductScalarFieldEnum = {
-  id: 'id',
-  planId: 'planId',
-  productId: 'productId',
-  variantId: 'variantId',
-  defaultQuantity: 'defaultQuantity',
-  unitPrice: 'unitPrice'
-} as const
-
-export type PlanProductScalarFieldEnum = (typeof PlanProductScalarFieldEnum)[keyof typeof PlanProductScalarFieldEnum]
 
 
 export const QuotationTemplateScalarFieldEnum = {
@@ -214,7 +167,9 @@ export const QuotationTemplateScalarFieldEnum = {
   planId: 'planId',
   validityDays: 'validityDays',
   description: 'description',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type QuotationTemplateScalarFieldEnum = (typeof QuotationTemplateScalarFieldEnum)[keyof typeof QuotationTemplateScalarFieldEnum]
@@ -232,19 +187,42 @@ export const QuotationTemplateLineScalarFieldEnum = {
 export type QuotationTemplateLineScalarFieldEnum = (typeof QuotationTemplateLineScalarFieldEnum)[keyof typeof QuotationTemplateLineScalarFieldEnum]
 
 
+export const DiscountScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  type: 'type',
+  value: 'value',
+  scope: 'scope',
+  productId: 'productId',
+  minPurchaseAmount: 'minPurchaseAmount',
+  minQuantity: 'minQuantity',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  usageLimit: 'usageLimit',
+  usageCount: 'usageCount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
+
+
 export const SubscriptionScalarFieldEnum = {
   id: 'id',
   number: 'number',
   customerId: 'customerId',
   planId: 'planId',
   templateId: 'templateId',
+  discountId: 'discountId',
   status: 'status',
   quotationValidUntil: 'quotationValidUntil',
   startDate: 'startDate',
   expiryDate: 'expiryDate',
-  paymentTermId: 'paymentTermId',
   nextBillingDate: 'nextBillingDate',
-  createdBy: 'createdBy',
+  paymentTerms: 'paymentTerms',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -260,70 +238,10 @@ export const SubscriptionLineScalarFieldEnum = {
   taxId: 'taxId',
   quantity: 'quantity',
   unitPrice: 'unitPrice',
-  lineTotal: 'lineTotal'
+  amount: 'amount'
 } as const
 
 export type SubscriptionLineScalarFieldEnum = (typeof SubscriptionLineScalarFieldEnum)[keyof typeof SubscriptionLineScalarFieldEnum]
-
-
-export const SubscriptionStatusHistoryScalarFieldEnum = {
-  id: 'id',
-  subscriptionId: 'subscriptionId',
-  fromStatus: 'fromStatus',
-  toStatus: 'toStatus',
-  changedBy: 'changedBy',
-  changedAt: 'changedAt',
-  note: 'note'
-} as const
-
-export type SubscriptionStatusHistoryScalarFieldEnum = (typeof SubscriptionStatusHistoryScalarFieldEnum)[keyof typeof SubscriptionStatusHistoryScalarFieldEnum]
-
-
-export const DiscountScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  type: 'type',
-  value: 'value',
-  scope: 'scope',
-  minPurchaseAmount: 'minPurchaseAmount',
-  minQuantity: 'minQuantity',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  usageLimit: 'usageLimit',
-  usageCount: 'usageCount',
-  isActive: 'isActive',
-  createdBy: 'createdBy'
-} as const
-
-export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
-
-
-export const DiscountProductScalarFieldEnum = {
-  discountId: 'discountId',
-  productId: 'productId'
-} as const
-
-export type DiscountProductScalarFieldEnum = (typeof DiscountProductScalarFieldEnum)[keyof typeof DiscountProductScalarFieldEnum]
-
-
-export const DiscountSubscriptionScalarFieldEnum = {
-  discountId: 'discountId',
-  subscriptionId: 'subscriptionId'
-} as const
-
-export type DiscountSubscriptionScalarFieldEnum = (typeof DiscountSubscriptionScalarFieldEnum)[keyof typeof DiscountSubscriptionScalarFieldEnum]
-
-
-export const DiscountApplicationScalarFieldEnum = {
-  id: 'id',
-  discountId: 'discountId',
-  invoiceId: 'invoiceId',
-  invoiceLineId: 'invoiceLineId',
-  discountAmount: 'discountAmount',
-  appliedAt: 'appliedAt'
-} as const
-
-export type DiscountApplicationScalarFieldEnum = (typeof DiscountApplicationScalarFieldEnum)[keyof typeof DiscountApplicationScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -336,14 +254,14 @@ export const InvoiceScalarFieldEnum = {
   dueDate: 'dueDate',
   billingPeriodStart: 'billingPeriodStart',
   billingPeriodEnd: 'billingPeriodEnd',
-  billToName: 'billToName',
-  billToAddress: 'billToAddress',
+  customerName: 'customerName',
+  customerEmail: 'customerEmail',
+  billingAddress: 'billingAddress',
   subtotal: 'subtotal',
   discountTotal: 'discountTotal',
   taxTotal: 'taxTotal',
   grandTotal: 'grandTotal',
   amountPaid: 'amountPaid',
-  sentAt: 'sentAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -360,7 +278,6 @@ export const InvoiceLineScalarFieldEnum = {
   quantity: 'quantity',
   unitPrice: 'unitPrice',
   discountAmount: 'discountAmount',
-  netAmount: 'netAmount',
   taxRate: 'taxRate',
   taxAmount: 'taxAmount',
   lineTotal: 'lineTotal'
@@ -377,25 +294,11 @@ export const PaymentScalarFieldEnum = {
   paymentDate: 'paymentDate',
   reference: 'reference',
   notes: 'notes',
-  recordedBy: 'recordedBy',
+  recordedById: 'recordedById',
   createdAt: 'createdAt'
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const AuditLogScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  action: 'action',
-  entityType: 'entityType',
-  entityId: 'entityId',
-  oldValues: 'oldValues',
-  newValues: 'newValues',
-  createdAt: 'createdAt'
-} as const
-
-export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -404,14 +307,6 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const NullableJsonNullValueInput = {
-  DbNull: DbNull,
-  JsonNull: JsonNull
-} as const
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -428,13 +323,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

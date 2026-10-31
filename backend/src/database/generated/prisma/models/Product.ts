@@ -42,8 +42,8 @@ export type ProductMinAggregateOutputType = {
   type: string | null
   salesPrice: runtime.Decimal | null
   costPrice: runtime.Decimal | null
-  defaultTaxId: string | null
   notes: string | null
+  taxId: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -55,8 +55,8 @@ export type ProductMaxAggregateOutputType = {
   type: string | null
   salesPrice: runtime.Decimal | null
   costPrice: runtime.Decimal | null
-  defaultTaxId: string | null
   notes: string | null
+  taxId: string | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -68,8 +68,8 @@ export type ProductCountAggregateOutputType = {
   type: number
   salesPrice: number
   costPrice: number
-  defaultTaxId: number
   notes: number
+  taxId: number
   isActive: number
   createdAt: number
   updatedAt: number
@@ -93,8 +93,8 @@ export type ProductMinAggregateInputType = {
   type?: true
   salesPrice?: true
   costPrice?: true
-  defaultTaxId?: true
   notes?: true
+  taxId?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -106,8 +106,8 @@ export type ProductMaxAggregateInputType = {
   type?: true
   salesPrice?: true
   costPrice?: true
-  defaultTaxId?: true
   notes?: true
+  taxId?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -119,8 +119,8 @@ export type ProductCountAggregateInputType = {
   type?: true
   salesPrice?: true
   costPrice?: true
-  defaultTaxId?: true
   notes?: true
+  taxId?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -219,8 +219,8 @@ export type ProductGroupByOutputType = {
   type: string
   salesPrice: runtime.Decimal
   costPrice: runtime.Decimal
-  defaultTaxId: string | null
   notes: string | null
+  taxId: string | null
   isActive: boolean
   createdAt: Date
   updatedAt: Date
@@ -255,18 +255,17 @@ export type ProductWhereInput = {
   type?: Prisma.StringFilter<"Product"> | string
   salesPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   notes?: Prisma.StringNullableFilter<"Product"> | string | null
+  taxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  defaultTax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
+  tax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
   variants?: Prisma.ProductVariantListRelationFilter
-  planProducts?: Prisma.PlanProductListRelationFilter
   quotationTemplateLines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptionLines?: Prisma.SubscriptionLineListRelationFilter
   invoiceLines?: Prisma.InvoiceLineListRelationFilter
-  discountProducts?: Prisma.DiscountProductListRelationFilter
+  discounts?: Prisma.DiscountListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -275,18 +274,17 @@ export type ProductOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   salesPrice?: Prisma.SortOrder
   costPrice?: Prisma.SortOrder
-  defaultTaxId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  defaultTax?: Prisma.TaxOrderByWithRelationInput
+  tax?: Prisma.TaxOrderByWithRelationInput
   variants?: Prisma.ProductVariantOrderByRelationAggregateInput
-  planProducts?: Prisma.PlanProductOrderByRelationAggregateInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineOrderByRelationAggregateInput
   subscriptionLines?: Prisma.SubscriptionLineOrderByRelationAggregateInput
   invoiceLines?: Prisma.InvoiceLineOrderByRelationAggregateInput
-  discountProducts?: Prisma.DiscountProductOrderByRelationAggregateInput
+  discounts?: Prisma.DiscountOrderByRelationAggregateInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -298,18 +296,17 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.StringFilter<"Product"> | string
   salesPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   notes?: Prisma.StringNullableFilter<"Product"> | string | null
+  taxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  defaultTax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
+  tax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
   variants?: Prisma.ProductVariantListRelationFilter
-  planProducts?: Prisma.PlanProductListRelationFilter
   quotationTemplateLines?: Prisma.QuotationTemplateLineListRelationFilter
   subscriptionLines?: Prisma.SubscriptionLineListRelationFilter
   invoiceLines?: Prisma.InvoiceLineListRelationFilter
-  discountProducts?: Prisma.DiscountProductListRelationFilter
+  discounts?: Prisma.DiscountListRelationFilter
 }, "id">
 
 export type ProductOrderByWithAggregationInput = {
@@ -318,8 +315,8 @@ export type ProductOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   salesPrice?: Prisma.SortOrder
   costPrice?: Prisma.SortOrder
-  defaultTaxId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -339,8 +336,8 @@ export type ProductScalarWhereWithAggregatesInput = {
   type?: Prisma.StringWithAggregatesFilter<"Product"> | string
   salesPrice?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.UuidNullableWithAggregatesFilter<"Product"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  taxId?: Prisma.UuidNullableWithAggregatesFilter<"Product"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -351,18 +348,17 @@ export type ProductCreateInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -370,18 +366,17 @@ export type ProductUncheckedCreateInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -394,13 +389,12 @@ export type ProductUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -409,17 +403,16 @@ export type ProductUncheckedUpdateInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -427,9 +420,9 @@ export type ProductCreateManyInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -453,8 +446,8 @@ export type ProductUncheckedUpdateManyInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -476,8 +469,8 @@ export type ProductCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   salesPrice?: Prisma.SortOrder
   costPrice?: Prisma.SortOrder
-  defaultTaxId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  taxId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -494,8 +487,8 @@ export type ProductMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   salesPrice?: Prisma.SortOrder
   costPrice?: Prisma.SortOrder
-  defaultTaxId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  taxId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -507,8 +500,8 @@ export type ProductMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   salesPrice?: Prisma.SortOrder
   costPrice?: Prisma.SortOrder
-  defaultTaxId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  taxId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -524,45 +517,50 @@ export type ProductScalarRelationFilter = {
   isNot?: Prisma.ProductWhereInput
 }
 
-export type ProductCreateNestedManyWithoutDefaultTaxInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput> | Prisma.ProductCreateWithoutDefaultTaxInput[] | Prisma.ProductUncheckedCreateWithoutDefaultTaxInput[]
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDefaultTaxInput | Prisma.ProductCreateOrConnectWithoutDefaultTaxInput[]
-  createMany?: Prisma.ProductCreateManyDefaultTaxInputEnvelope
+export type ProductNullableScalarRelationFilter = {
+  is?: Prisma.ProductWhereInput | null
+  isNot?: Prisma.ProductWhereInput | null
+}
+
+export type ProductCreateNestedManyWithoutTaxInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput> | Prisma.ProductCreateWithoutTaxInput[] | Prisma.ProductUncheckedCreateWithoutTaxInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutTaxInput | Prisma.ProductCreateOrConnectWithoutTaxInput[]
+  createMany?: Prisma.ProductCreateManyTaxInputEnvelope
   connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
 }
 
-export type ProductUncheckedCreateNestedManyWithoutDefaultTaxInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput> | Prisma.ProductCreateWithoutDefaultTaxInput[] | Prisma.ProductUncheckedCreateWithoutDefaultTaxInput[]
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDefaultTaxInput | Prisma.ProductCreateOrConnectWithoutDefaultTaxInput[]
-  createMany?: Prisma.ProductCreateManyDefaultTaxInputEnvelope
+export type ProductUncheckedCreateNestedManyWithoutTaxInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput> | Prisma.ProductCreateWithoutTaxInput[] | Prisma.ProductUncheckedCreateWithoutTaxInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutTaxInput | Prisma.ProductCreateOrConnectWithoutTaxInput[]
+  createMany?: Prisma.ProductCreateManyTaxInputEnvelope
   connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
 }
 
-export type ProductUpdateManyWithoutDefaultTaxNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput> | Prisma.ProductCreateWithoutDefaultTaxInput[] | Prisma.ProductUncheckedCreateWithoutDefaultTaxInput[]
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDefaultTaxInput | Prisma.ProductCreateOrConnectWithoutDefaultTaxInput[]
-  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutDefaultTaxInput | Prisma.ProductUpsertWithWhereUniqueWithoutDefaultTaxInput[]
-  createMany?: Prisma.ProductCreateManyDefaultTaxInputEnvelope
+export type ProductUpdateManyWithoutTaxNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput> | Prisma.ProductCreateWithoutTaxInput[] | Prisma.ProductUncheckedCreateWithoutTaxInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutTaxInput | Prisma.ProductCreateOrConnectWithoutTaxInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutTaxInput | Prisma.ProductUpsertWithWhereUniqueWithoutTaxInput[]
+  createMany?: Prisma.ProductCreateManyTaxInputEnvelope
   set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
-  update?: Prisma.ProductUpdateWithWhereUniqueWithoutDefaultTaxInput | Prisma.ProductUpdateWithWhereUniqueWithoutDefaultTaxInput[]
-  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutDefaultTaxInput | Prisma.ProductUpdateManyWithWhereWithoutDefaultTaxInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutTaxInput | Prisma.ProductUpdateWithWhereUniqueWithoutTaxInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutTaxInput | Prisma.ProductUpdateManyWithWhereWithoutTaxInput[]
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type ProductUncheckedUpdateManyWithoutDefaultTaxNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput> | Prisma.ProductCreateWithoutDefaultTaxInput[] | Prisma.ProductUncheckedCreateWithoutDefaultTaxInput[]
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDefaultTaxInput | Prisma.ProductCreateOrConnectWithoutDefaultTaxInput[]
-  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutDefaultTaxInput | Prisma.ProductUpsertWithWhereUniqueWithoutDefaultTaxInput[]
-  createMany?: Prisma.ProductCreateManyDefaultTaxInputEnvelope
+export type ProductUncheckedUpdateManyWithoutTaxNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput> | Prisma.ProductCreateWithoutTaxInput[] | Prisma.ProductUncheckedCreateWithoutTaxInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutTaxInput | Prisma.ProductCreateOrConnectWithoutTaxInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutTaxInput | Prisma.ProductUpsertWithWhereUniqueWithoutTaxInput[]
+  createMany?: Prisma.ProductCreateManyTaxInputEnvelope
   set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
   connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
-  update?: Prisma.ProductUpdateWithWhereUniqueWithoutDefaultTaxInput | Prisma.ProductUpdateWithWhereUniqueWithoutDefaultTaxInput[]
-  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutDefaultTaxInput | Prisma.ProductUpdateManyWithWhereWithoutDefaultTaxInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutTaxInput | Prisma.ProductUpdateWithWhereUniqueWithoutTaxInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutTaxInput | Prisma.ProductUpdateManyWithWhereWithoutTaxInput[]
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
@@ -580,20 +578,6 @@ export type ProductUpdateOneRequiredWithoutVariantsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutVariantsInput, Prisma.ProductUpdateWithoutVariantsInput>, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
 }
 
-export type ProductCreateNestedOneWithoutPlanProductsInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutPlanProductsInput, Prisma.ProductUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPlanProductsInput
-  connect?: Prisma.ProductWhereUniqueInput
-}
-
-export type ProductUpdateOneRequiredWithoutPlanProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutPlanProductsInput, Prisma.ProductUncheckedCreateWithoutPlanProductsInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPlanProductsInput
-  upsert?: Prisma.ProductUpsertWithoutPlanProductsInput
-  connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutPlanProductsInput, Prisma.ProductUpdateWithoutPlanProductsInput>, Prisma.ProductUncheckedUpdateWithoutPlanProductsInput>
-}
-
 export type ProductCreateNestedOneWithoutQuotationTemplateLinesInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutQuotationTemplateLinesInput, Prisma.ProductUncheckedCreateWithoutQuotationTemplateLinesInput>
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutQuotationTemplateLinesInput
@@ -606,6 +590,22 @@ export type ProductUpdateOneRequiredWithoutQuotationTemplateLinesNestedInput = {
   upsert?: Prisma.ProductUpsertWithoutQuotationTemplateLinesInput
   connect?: Prisma.ProductWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutQuotationTemplateLinesInput, Prisma.ProductUpdateWithoutQuotationTemplateLinesInput>, Prisma.ProductUncheckedUpdateWithoutQuotationTemplateLinesInput>
+}
+
+export type ProductCreateNestedOneWithoutDiscountsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutDiscountsInput, Prisma.ProductUncheckedCreateWithoutDiscountsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDiscountsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneWithoutDiscountsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutDiscountsInput, Prisma.ProductUncheckedCreateWithoutDiscountsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDiscountsInput
+  upsert?: Prisma.ProductUpsertWithoutDiscountsInput
+  disconnect?: Prisma.ProductWhereInput | boolean
+  delete?: Prisma.ProductWhereInput | boolean
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutDiscountsInput, Prisma.ProductUpdateWithoutDiscountsInput>, Prisma.ProductUncheckedUpdateWithoutDiscountsInput>
 }
 
 export type ProductCreateNestedOneWithoutSubscriptionLinesInput = {
@@ -622,20 +622,6 @@ export type ProductUpdateOneRequiredWithoutSubscriptionLinesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutSubscriptionLinesInput, Prisma.ProductUpdateWithoutSubscriptionLinesInput>, Prisma.ProductUncheckedUpdateWithoutSubscriptionLinesInput>
 }
 
-export type ProductCreateNestedOneWithoutDiscountProductsInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDiscountProductsInput, Prisma.ProductUncheckedCreateWithoutDiscountProductsInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDiscountProductsInput
-  connect?: Prisma.ProductWhereUniqueInput
-}
-
-export type ProductUpdateOneRequiredWithoutDiscountProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutDiscountProductsInput, Prisma.ProductUncheckedCreateWithoutDiscountProductsInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutDiscountProductsInput
-  upsert?: Prisma.ProductUpsertWithoutDiscountProductsInput
-  connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutDiscountProductsInput, Prisma.ProductUpdateWithoutDiscountProductsInput>, Prisma.ProductUncheckedUpdateWithoutDiscountProductsInput>
-}
-
 export type ProductCreateNestedOneWithoutInvoiceLinesInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutInvoiceLinesInput, Prisma.ProductUncheckedCreateWithoutInvoiceLinesInput>
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutInvoiceLinesInput
@@ -650,66 +636,64 @@ export type ProductUpdateOneRequiredWithoutInvoiceLinesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutInvoiceLinesInput, Prisma.ProductUpdateWithoutInvoiceLinesInput>, Prisma.ProductUncheckedUpdateWithoutInvoiceLinesInput>
 }
 
-export type ProductCreateWithoutDefaultTaxInput = {
+export type ProductCreateWithoutTaxInput = {
   id?: string
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
-export type ProductUncheckedCreateWithoutDefaultTaxInput = {
+export type ProductUncheckedCreateWithoutTaxInput = {
   id?: string
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutDefaultTaxInput = {
+export type ProductCreateOrConnectWithoutTaxInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput>
 }
 
-export type ProductCreateManyDefaultTaxInputEnvelope = {
-  data: Prisma.ProductCreateManyDefaultTaxInput | Prisma.ProductCreateManyDefaultTaxInput[]
+export type ProductCreateManyTaxInputEnvelope = {
+  data: Prisma.ProductCreateManyTaxInput | Prisma.ProductCreateManyTaxInput[]
   skipDuplicates?: boolean
 }
 
-export type ProductUpsertWithWhereUniqueWithoutDefaultTaxInput = {
+export type ProductUpsertWithWhereUniqueWithoutTaxInput = {
   where: Prisma.ProductWhereUniqueInput
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutDefaultTaxInput, Prisma.ProductUncheckedUpdateWithoutDefaultTaxInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutDefaultTaxInput, Prisma.ProductUncheckedCreateWithoutDefaultTaxInput>
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutTaxInput, Prisma.ProductUncheckedUpdateWithoutTaxInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutTaxInput, Prisma.ProductUncheckedCreateWithoutTaxInput>
 }
 
-export type ProductUpdateWithWhereUniqueWithoutDefaultTaxInput = {
+export type ProductUpdateWithWhereUniqueWithoutTaxInput = {
   where: Prisma.ProductWhereUniqueInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutDefaultTaxInput, Prisma.ProductUncheckedUpdateWithoutDefaultTaxInput>
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutTaxInput, Prisma.ProductUncheckedUpdateWithoutTaxInput>
 }
 
-export type ProductUpdateManyWithWhereWithoutDefaultTaxInput = {
+export type ProductUpdateManyWithWhereWithoutTaxInput = {
   where: Prisma.ProductScalarWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutDefaultTaxInput>
+  data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutTaxInput>
 }
 
 export type ProductScalarWhereInput = {
@@ -721,8 +705,8 @@ export type ProductScalarWhereInput = {
   type?: Prisma.StringFilter<"Product"> | string
   salesPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   notes?: Prisma.StringNullableFilter<"Product"> | string | null
+  taxId?: Prisma.UuidNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -733,17 +717,16 @@ export type ProductCreateWithoutVariantsInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutVariantsInput = {
@@ -751,17 +734,16 @@ export type ProductUncheckedCreateWithoutVariantsInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutVariantsInput = {
@@ -790,12 +772,11 @@ export type ProductUpdateWithoutVariantsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutVariantsInput = {
@@ -804,104 +785,15 @@ export type ProductUncheckedUpdateWithoutVariantsInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
-}
-
-export type ProductCreateWithoutPlanProductsInput = {
-  id?: string
-  name: string
-  type: string
-  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  notes?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
-  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
-  subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
-  invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
-}
-
-export type ProductUncheckedCreateWithoutPlanProductsInput = {
-  id?: string
-  name: string
-  type: string
-  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
-  notes?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
-}
-
-export type ProductCreateOrConnectWithoutPlanProductsInput = {
-  where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutPlanProductsInput, Prisma.ProductUncheckedCreateWithoutPlanProductsInput>
-}
-
-export type ProductUpsertWithoutPlanProductsInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutPlanProductsInput, Prisma.ProductUncheckedUpdateWithoutPlanProductsInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutPlanProductsInput, Prisma.ProductUncheckedCreateWithoutPlanProductsInput>
-  where?: Prisma.ProductWhereInput
-}
-
-export type ProductUpdateToOneWithWhereWithoutPlanProductsInput = {
-  where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutPlanProductsInput, Prisma.ProductUncheckedUpdateWithoutPlanProductsInput>
-}
-
-export type ProductUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
-  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
-  invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
-}
-
-export type ProductUncheckedUpdateWithoutPlanProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutQuotationTemplateLinesInput = {
@@ -909,17 +801,16 @@ export type ProductCreateWithoutQuotationTemplateLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutQuotationTemplateLinesInput = {
@@ -927,17 +818,16 @@ export type ProductUncheckedCreateWithoutQuotationTemplateLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutQuotationTemplateLinesInput = {
@@ -966,12 +856,11 @@ export type ProductUpdateWithoutQuotationTemplateLinesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutQuotationTemplateLinesInput = {
@@ -980,16 +869,99 @@ export type ProductUncheckedUpdateWithoutQuotationTemplateLinesInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutDiscountsInput = {
+  id?: string
+  name: string
+  type: string
+  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
+  quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
+  subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
+  invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutDiscountsInput = {
+  id?: string
+  name: string
+  type: string
+  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  taxId?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
+  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
+  subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
+  invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutDiscountsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutDiscountsInput, Prisma.ProductUncheckedCreateWithoutDiscountsInput>
+}
+
+export type ProductUpsertWithoutDiscountsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutDiscountsInput, Prisma.ProductUncheckedUpdateWithoutDiscountsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutDiscountsInput, Prisma.ProductUncheckedCreateWithoutDiscountsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutDiscountsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutDiscountsInput, Prisma.ProductUncheckedUpdateWithoutDiscountsInput>
+}
+
+export type ProductUpdateWithoutDiscountsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
+  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
+  quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
+  subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
+  invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutDiscountsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
+  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
+  subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
+  invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutSubscriptionLinesInput = {
@@ -997,17 +969,16 @@ export type ProductCreateWithoutSubscriptionLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutSubscriptionLinesInput = {
@@ -1015,17 +986,16 @@ export type ProductUncheckedCreateWithoutSubscriptionLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
   invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutSubscriptionLinesInput = {
@@ -1054,12 +1024,11 @@ export type ProductUpdateWithoutSubscriptionLinesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutSubscriptionLinesInput = {
@@ -1068,104 +1037,15 @@ export type ProductUncheckedUpdateWithoutSubscriptionLinesInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
-}
-
-export type ProductCreateWithoutDiscountProductsInput = {
-  id?: string
-  name: string
-  type: string
-  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  notes?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
-  variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
-  subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
-  invoiceLines?: Prisma.InvoiceLineCreateNestedManyWithoutProductInput
-}
-
-export type ProductUncheckedCreateWithoutDiscountProductsInput = {
-  id?: string
-  name: string
-  type: string
-  salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
-  notes?: string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedCreateNestedManyWithoutProductInput
-}
-
-export type ProductCreateOrConnectWithoutDiscountProductsInput = {
-  where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutDiscountProductsInput, Prisma.ProductUncheckedCreateWithoutDiscountProductsInput>
-}
-
-export type ProductUpsertWithoutDiscountProductsInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutDiscountProductsInput, Prisma.ProductUncheckedUpdateWithoutDiscountProductsInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutDiscountProductsInput, Prisma.ProductUncheckedCreateWithoutDiscountProductsInput>
-  where?: Prisma.ProductWhereInput
-}
-
-export type ProductUpdateToOneWithWhereWithoutDiscountProductsInput = {
-  where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutDiscountProductsInput, Prisma.ProductUncheckedUpdateWithoutDiscountProductsInput>
-}
-
-export type ProductUpdateWithoutDiscountProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
-  variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
-  invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-}
-
-export type ProductUncheckedUpdateWithoutDiscountProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
-  salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
-  quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
-  subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
-  invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutInvoiceLinesInput = {
@@ -1173,17 +1053,16 @@ export type ProductCreateWithoutInvoiceLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  defaultTax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   variants?: Prisma.ProductVariantCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutInvoiceLinesInput = {
@@ -1191,17 +1070,16 @@ export type ProductUncheckedCreateWithoutInvoiceLinesInput = {
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: string | null
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
+  taxId?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   variants?: Prisma.ProductVariantUncheckedCreateNestedManyWithoutProductInput
-  planProducts?: Prisma.PlanProductUncheckedCreateNestedManyWithoutProductInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedCreateNestedManyWithoutProductInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedCreateNestedManyWithoutProductInput
-  discountProducts?: Prisma.DiscountProductUncheckedCreateNestedManyWithoutProductInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutInvoiceLinesInput = {
@@ -1230,12 +1108,11 @@ export type ProductUpdateWithoutInvoiceLinesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  defaultTax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutInvoiceLinesInput = {
@@ -1244,31 +1121,30 @@ export type ProductUncheckedUpdateWithoutInvoiceLinesInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   salesPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   costPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  defaultTaxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
 }
 
-export type ProductCreateManyDefaultTaxInput = {
+export type ProductCreateManyTaxInput = {
   id?: string
   name: string
   type: string
   salesPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  costPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   notes?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type ProductUpdateWithoutDefaultTaxInput = {
+export type ProductUpdateWithoutTaxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1279,14 +1155,13 @@ export type ProductUpdateWithoutDefaultTaxInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutDefaultTaxInput = {
+export type ProductUncheckedUpdateWithoutTaxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1297,14 +1172,13 @@ export type ProductUncheckedUpdateWithoutDefaultTaxInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ProductVariantUncheckedUpdateManyWithoutProductNestedInput
-  planProducts?: Prisma.PlanProductUncheckedUpdateManyWithoutProductNestedInput
   quotationTemplateLines?: Prisma.QuotationTemplateLineUncheckedUpdateManyWithoutProductNestedInput
   subscriptionLines?: Prisma.SubscriptionLineUncheckedUpdateManyWithoutProductNestedInput
   invoiceLines?: Prisma.InvoiceLineUncheckedUpdateManyWithoutProductNestedInput
-  discountProducts?: Prisma.DiscountProductUncheckedUpdateManyWithoutProductNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateManyWithoutDefaultTaxInput = {
+export type ProductUncheckedUpdateManyWithoutTaxInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1323,20 +1197,18 @@ export type ProductUncheckedUpdateManyWithoutDefaultTaxInput = {
 
 export type ProductCountOutputType = {
   variants: number
-  planProducts: number
   quotationTemplateLines: number
   subscriptionLines: number
   invoiceLines: number
-  discountProducts: number
+  discounts: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variants?: boolean | ProductCountOutputTypeCountVariantsArgs
-  planProducts?: boolean | ProductCountOutputTypeCountPlanProductsArgs
   quotationTemplateLines?: boolean | ProductCountOutputTypeCountQuotationTemplateLinesArgs
   subscriptionLines?: boolean | ProductCountOutputTypeCountSubscriptionLinesArgs
   invoiceLines?: boolean | ProductCountOutputTypeCountInvoiceLinesArgs
-  discountProducts?: boolean | ProductCountOutputTypeCountDiscountProductsArgs
+  discounts?: boolean | ProductCountOutputTypeCountDiscountsArgs
 }
 
 /**
@@ -1354,13 +1226,6 @@ export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
  */
 export type ProductCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProductVariantWhereInput
-}
-
-/**
- * ProductCountOutputType without action
- */
-export type ProductCountOutputTypeCountPlanProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PlanProductWhereInput
 }
 
 /**
@@ -1387,8 +1252,8 @@ export type ProductCountOutputTypeCountInvoiceLinesArgs<ExtArgs extends runtime.
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountDiscountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DiscountProductWhereInput
+export type ProductCountOutputTypeCountDiscountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiscountWhereInput
 }
 
 
@@ -1398,18 +1263,17 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   type?: boolean
   salesPrice?: boolean
   costPrice?: boolean
-  defaultTaxId?: boolean
   notes?: boolean
+  taxId?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
   variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
-  planProducts?: boolean | Prisma.Product$planProductsArgs<ExtArgs>
   quotationTemplateLines?: boolean | Prisma.Product$quotationTemplateLinesArgs<ExtArgs>
   subscriptionLines?: boolean | Prisma.Product$subscriptionLinesArgs<ExtArgs>
   invoiceLines?: boolean | Prisma.Product$invoiceLinesArgs<ExtArgs>
-  discountProducts?: boolean | Prisma.Product$discountProductsArgs<ExtArgs>
+  discounts?: boolean | Prisma.Product$discountsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -1419,12 +1283,12 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   type?: boolean
   salesPrice?: boolean
   costPrice?: boolean
-  defaultTaxId?: boolean
   notes?: boolean
+  taxId?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1433,12 +1297,12 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   type?: boolean
   salesPrice?: boolean
   costPrice?: boolean
-  defaultTaxId?: boolean
   notes?: boolean
+  taxId?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectScalar = {
@@ -1447,41 +1311,39 @@ export type ProductSelectScalar = {
   type?: boolean
   salesPrice?: boolean
   costPrice?: boolean
-  defaultTaxId?: boolean
   notes?: boolean
+  taxId?: boolean
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "salesPrice" | "costPrice" | "defaultTaxId" | "notes" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "salesPrice" | "costPrice" | "notes" | "taxId" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
   variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
-  planProducts?: boolean | Prisma.Product$planProductsArgs<ExtArgs>
   quotationTemplateLines?: boolean | Prisma.Product$quotationTemplateLinesArgs<ExtArgs>
   subscriptionLines?: boolean | Prisma.Product$subscriptionLinesArgs<ExtArgs>
   invoiceLines?: boolean | Prisma.Product$invoiceLinesArgs<ExtArgs>
-  discountProducts?: boolean | Prisma.Product$discountProductsArgs<ExtArgs>
+  discounts?: boolean | Prisma.Product$discountsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
 }
 export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  defaultTax?: boolean | Prisma.Product$defaultTaxArgs<ExtArgs>
+  tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
 }
 
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
-    defaultTax: Prisma.$TaxPayload<ExtArgs> | null
+    tax: Prisma.$TaxPayload<ExtArgs> | null
     variants: Prisma.$ProductVariantPayload<ExtArgs>[]
-    planProducts: Prisma.$PlanProductPayload<ExtArgs>[]
     quotationTemplateLines: Prisma.$QuotationTemplateLinePayload<ExtArgs>[]
     subscriptionLines: Prisma.$SubscriptionLinePayload<ExtArgs>[]
     invoiceLines: Prisma.$InvoiceLinePayload<ExtArgs>[]
-    discountProducts: Prisma.$DiscountProductPayload<ExtArgs>[]
+    discounts: Prisma.$DiscountPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1489,8 +1351,8 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     type: string
     salesPrice: runtime.Decimal
     costPrice: runtime.Decimal
-    defaultTaxId: string | null
     notes: string | null
+    taxId: string | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -1888,13 +1750,12 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  defaultTax<T extends Prisma.Product$defaultTaxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$defaultTaxArgs<ExtArgs>>): Prisma.Prisma__TaxClient<runtime.Types.Result.GetResult<Prisma.$TaxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  tax<T extends Prisma.Product$taxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$taxArgs<ExtArgs>>): Prisma.Prisma__TaxClient<runtime.Types.Result.GetResult<Prisma.$TaxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   variants<T extends Prisma.Product$variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductVariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  planProducts<T extends Prisma.Product$planProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$planProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotationTemplateLines<T extends Prisma.Product$quotationTemplateLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$quotationTemplateLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotationTemplateLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionLines<T extends Prisma.Product$subscriptionLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$subscriptionLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoiceLines<T extends Prisma.Product$invoiceLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$invoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  discountProducts<T extends Prisma.Product$discountProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$discountProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  discounts<T extends Prisma.Product$discountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$discountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1929,8 +1790,8 @@ export interface ProductFieldRefs {
   readonly type: Prisma.FieldRef<"Product", 'String'>
   readonly salesPrice: Prisma.FieldRef<"Product", 'Decimal'>
   readonly costPrice: Prisma.FieldRef<"Product", 'Decimal'>
-  readonly defaultTaxId: Prisma.FieldRef<"Product", 'String'>
   readonly notes: Prisma.FieldRef<"Product", 'String'>
+  readonly taxId: Prisma.FieldRef<"Product", 'String'>
   readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Product", 'DateTime'>
@@ -2335,9 +2196,9 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Product.defaultTax
+ * Product.tax
  */
-export type Product$defaultTaxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$taxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Tax
    */
@@ -2375,30 +2236,6 @@ export type Product$variantsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.ProductVariantScalarFieldEnum | Prisma.ProductVariantScalarFieldEnum[]
-}
-
-/**
- * Product.planProducts
- */
-export type Product$planProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PlanProduct
-   */
-  select?: Prisma.PlanProductSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PlanProduct
-   */
-  omit?: Prisma.PlanProductOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlanProductInclude<ExtArgs> | null
-  where?: Prisma.PlanProductWhereInput
-  orderBy?: Prisma.PlanProductOrderByWithRelationInput | Prisma.PlanProductOrderByWithRelationInput[]
-  cursor?: Prisma.PlanProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PlanProductScalarFieldEnum | Prisma.PlanProductScalarFieldEnum[]
 }
 
 /**
@@ -2474,27 +2311,27 @@ export type Product$invoiceLinesArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Product.discountProducts
+ * Product.discounts
  */
-export type Product$discountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$discountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DiscountProduct
+   * Select specific fields to fetch from the Discount
    */
-  select?: Prisma.DiscountProductSelect<ExtArgs> | null
+  select?: Prisma.DiscountSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DiscountProduct
+   * Omit specific fields from the Discount
    */
-  omit?: Prisma.DiscountProductOmit<ExtArgs> | null
+  omit?: Prisma.DiscountOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DiscountProductInclude<ExtArgs> | null
-  where?: Prisma.DiscountProductWhereInput
-  orderBy?: Prisma.DiscountProductOrderByWithRelationInput | Prisma.DiscountProductOrderByWithRelationInput[]
-  cursor?: Prisma.DiscountProductWhereUniqueInput
+  include?: Prisma.DiscountInclude<ExtArgs> | null
+  where?: Prisma.DiscountWhereInput
+  orderBy?: Prisma.DiscountOrderByWithRelationInput | Prisma.DiscountOrderByWithRelationInput[]
+  cursor?: Prisma.DiscountWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DiscountProductScalarFieldEnum | Prisma.DiscountProductScalarFieldEnum[]
+  distinct?: Prisma.DiscountScalarFieldEnum | Prisma.DiscountScalarFieldEnum[]
 }
 
 /**
